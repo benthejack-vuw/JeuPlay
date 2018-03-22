@@ -42,7 +42,7 @@ class OWL
         args = command.split("~")
         message = args.shift()
       end
-    end until (message && !message.include? "arduino")
+    end until message && !message.include?("arduino")
 
     ( @delegate.respond_to?( message ) ) ? @delegate.send( message, args ) : puts( "'#{message}' is not implemented in #{@delegate.class.name}" )
 
