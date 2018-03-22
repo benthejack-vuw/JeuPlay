@@ -36,14 +36,15 @@ class OWL
 
   def read_and_respond
 
-    if !@serial.eof?
-      begin
+    begin
+      unless !@serial.eof?
         command = @serial.readline.chomp "|\r\n"
         args = command.split("~")
         message = args.shift()
-      end until !message.include? "arduino"
-      ( @delegate.respond_to?( message ) ) ? @delegate.send( message, args ) : puts( "'#{message}' is not implemented in #{@delegate.class.name}" )
-    end
+      end
+    end until !message.include? "arduino"
+
+    ( @delegate.respond_to?( message ) ) ? @delegate.send( message, args ) : puts( "'#{message}' is not implemented in #{@delegate.class.name}" )
 
   end
 
