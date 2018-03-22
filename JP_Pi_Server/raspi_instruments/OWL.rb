@@ -15,12 +15,17 @@ class OWL
 
   def connect
     block_loop do
+      #LINUX
       ports = Dir.glob("/dev/ttyUSB*") - DISCARD_PORTS
+
+      #MAC
+      #ports = Dir.glob("/dev/{tty,cu}.*") - DISCARD_PORTS
+
       ports.each{ | p | attempt_connection p; break if @serial }
       ( @serial != nil )
    	 end
      sleep 1
-	
+
 	@serial.flush_input
 
 	end
@@ -32,9 +37,11 @@ class OWL
   def read_and_respond
 
     if !@serial.eof?
-      command = @serial.readline.chomp "|\r\n"
-      args = command.split("~")
-      message = args.shift()
+      begin
+        command = @serial.readline.chomp "|\r\n"
+        args = command.split("~")
+        message = args.shift()
+      end until !message.include? "arduino"
       ( @delegate.respond_to?( message ) ) ? @delegate.send( message, args ) : puts( "'#{message}' is not implemented in #{@delegate.class.name}" )
     end
 
@@ -68,8 +75,8 @@ class OWL
   def attempt_handshake conn
     	if conn.eof?
 		puts "restarting arduino"
-		conn.dtr = 1 
-		sleep 0.5 
+		conn.dtr = 1
+		sleep 0.5
 		conn.dtr = 0
 		sleep 2
 	end
