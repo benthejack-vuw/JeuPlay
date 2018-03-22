@@ -74,13 +74,14 @@ class OWL
   end
 
   def attempt_handshake conn
-    	if conn.eof?
+
+  if conn.eof?
 		puts "restarting arduino"
 		conn.dtr = 1
-		sleep 0.5
-		conn.dtr = 0
-		sleep 2
+		sleep 4
+    conn.dtr = 0
 	end
+
 	handshake = conn.readline.chomp
 		if handshake.include? "arduino"
 			@serial = conn
