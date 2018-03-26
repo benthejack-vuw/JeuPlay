@@ -1,14 +1,13 @@
 require 'socket'
 require 'serialport'
 require_relative 'OWL'
-require_relative 'serverConfig'
+require_relative '../serverConfig'
 require_relative 'timingConnection'
 
 class RaspiInstrument
 
 	def initialize instrument_index
-		@port =  ServerConfig::PORTS[instrument_index]
-		@server_ip = ServerConfig::IP_ADDRESS
+		@port =  ServerConfig::INSTRUMENT_IPS[instrument_index][1]
 	end
 
 	def connect_to_arduino
@@ -16,7 +15,7 @@ class RaspiInstrument
 	end
 
 	def connect_to_timing_server
-		@timing_connection = TimingConnection.new self, @server_ip, @port
+		@timing_connection = TimingConnection.new self, @port
 		@timing_connection.connect
 	end
 

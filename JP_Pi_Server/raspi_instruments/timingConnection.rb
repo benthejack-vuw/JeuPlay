@@ -3,9 +3,8 @@ class TimingConnection
   @@delegate_error = "TimingConnection's delegate must implement a timed_event method"
   LISTEN_DELAY = 1.0/100.0 #50th of a second
 
-  def initialize delegate, ip, port
+  def initialize delegate, port
     @delegate = delegate
-    @ip = ip
     @port = port
     raise @@delegate_error unless @delegate.respond_to? "timed_event"
   end
@@ -13,9 +12,8 @@ class TimingConnection
   def connect
     puts "waiting for timing  server"
 		begin
-			#@socket = TCPSocket.new @ip, @port
       @socket = UDPSocket.new
-      @socket.bind(@ip, @port)
+      @socket.bind("0.0.0.0", @port)
 		rescue
 			@socket = nil
       sleep 1.0/10.0
@@ -26,9 +24,8 @@ class TimingConnection
 
   def listen
       begin
-        text = @socket.recvfrom(16)#@socket.gets
-        p text
-        @delegate.timed_event if text.include? "bang"
+        text = @socket.recvfrom(16)
+        @delegate.timed_event if text[0].include? "bang"
     		sleep LISTEN_DELAY
       rescue
         @socket.close

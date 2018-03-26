@@ -32,7 +32,7 @@ class ServerConnection
   def send_message message
     begin
       #@client.puts message
-      @server.send "message", 0, @ip, @port
+      @server.send message, 0, @ip, @port
     rescue Errno::ECONNREFUSED
       #@server.close
       #@client = nil
