@@ -1,5 +1,5 @@
 require 'socket'
-require_relative "../serverConfig"
+require_relative "../serverConfig.rb"
 require_relative "timedInstrument"
 
 class TimingServer
