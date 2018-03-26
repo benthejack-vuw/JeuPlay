@@ -2,14 +2,14 @@ require_relative "serverConnection"
 
 class TimedInstrument
 
-  def initialize timing_data, port
+  def initialize timing_data, ip, port
     @note = 0;
     @timing_data = timing_data
-    @server_connection = ServerConnection.new port
+    @server_connection = ServerConnection.new ip, port
   end
 
   def connect
-    @server_connection.connect
+    @server_connection.connect_UDP
   end
 
   def play_note

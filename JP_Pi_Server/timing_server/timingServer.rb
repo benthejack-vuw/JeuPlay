@@ -4,6 +4,9 @@ require_relative "timedInstrument"
 class TimingServer
 
   BPM = 120.0
+
+  IPS = ["10.0.1.50", "10.0.1.50", "10.0.1.50", "10.0.1.50"]
+
   BEAT_BOARD = [
     [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -17,9 +20,9 @@ class TimingServer
 
   def create_instruments
     @instruments = BEAT_BOARD.each_with_index.map do |timing_data, i|
-        TimedInstrument.new timing_data, 2000+i
+        TimedInstrument.new timing_data, IPS[i], 2000+i
     end
-    
+
     @instruments.each do |instrument|
       instrument.connect
     end

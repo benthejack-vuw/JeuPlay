@@ -1,10 +1,11 @@
 class ServerConnection
 
-  def initialize port
+  def initialize ip, port
+    @ip = ip
     @port = port
   end
 
-  def connect
+  def connect_TCP
     Thread.new do
       puts "waiting for connection from client on port: #{@port}"
       @server = TCPServer.new @port
@@ -13,17 +14,24 @@ class ServerConnection
     end
   end
 
+  def connect_UDP
+      @server = UDPSocket.new
+      @server.connect(@ip, @port)
+  end
+
   def connected
-    return @client
+    #return @client
+    true
   end
 
   def send_message message
     begin
-      @client.puts message
+      #@client.puts message
+      @server.send "message", 0
     rescue Errno::EPIPE
-      @server.close
-      @client = nil
-      connect
+      #@server.close
+      #@client = nil
+      #connect
     end
   end
 
