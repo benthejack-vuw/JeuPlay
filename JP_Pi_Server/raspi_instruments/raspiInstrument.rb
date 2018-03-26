@@ -1,13 +1,13 @@
 require 'socket'
 require 'serialport'
 require_relative 'OWL'
-require_relative '../serverConfig'
+require_relative '../config'
 require_relative 'timingConnection'
 
 class RaspiInstrument
 
 	def initialize instrument_index
-		@port =  ServerConfig::INSTRUMENT_IPS[instrument_index][1]
+		@port =  Config.metronomes[instrument_index].port
 	end
 
 	def connect_to_arduino
@@ -15,13 +15,13 @@ class RaspiInstrument
 	end
 
 	def connect_to_timing_server
-		@timing_connection = TimingConnection.new self, @port
-		@timing_connection.connect
+		@channel_sub = ChannelSubscriber.new self, @port
+		@channel_sub.connect
 	end
 
 	def run
 		@owl.run do
-			@timing_connection.listen
+			@channel_sub.listen
 		end #this runs as a loop, if the block returns false (it does) this will run forever
 	end
 
@@ -34,7 +34,7 @@ class RaspiInstrument
 	end
 
 	def timed_event
-		#this asks the arduino for it's data,
+		#this asks the arduino for its data,
 		#the arduino will then return the data with a command that runs the jp_data method
 		#with the data as an array of args
 		@owl.write("jp_data", "please")
@@ -45,7 +45,7 @@ class RaspiInstrument
 	end
 
 	def play args
-		#raise 'over-ride this method in child class'
+		raise 'over-ride this method in child class'
 	end
 
 end

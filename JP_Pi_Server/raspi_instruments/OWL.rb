@@ -104,7 +104,7 @@ class OWL
     rescue EOFError
       puts "restarting arduino"
   		conn.write "reset_connection"
-  		sleep 8
+  		sleep 10
     end
 
     (@serial != nil) #block_loop run until serial is connected

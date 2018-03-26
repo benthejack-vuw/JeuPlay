@@ -11,7 +11,7 @@ class Instrument2 < RaspiInstrument
 
   def run
     while true
-      @timing_connection.listen
+      @channel_sub.listen
       sleep 0.001
     end
   end

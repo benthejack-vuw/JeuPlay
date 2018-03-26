@@ -1,7 +1,7 @@
-class TimingConnection
+class ChannelSubscriber
 
-  @@delegate_error = "TimingConnection's delegate must implement a timed_event method"
-  LISTEN_DELAY = 1.0/100.0 #50th of a second
+  DELEGATE_ERROR = "ChannelSubscriber's delegate must implement a timed_event method"
+  LOOP_DELAY = 1.0/100.0 #50th of a second
 
   def initialize delegate, port
     @delegate = delegate
@@ -10,25 +10,21 @@ class TimingConnection
   end
 
   def connect
-    puts "connecting to timing  server"
 		begin
       @socket = UDPSocket.new
       @socket.bind("0.0.0.0", @port)
 		rescue
 		end
-		puts "connected to timing server"
-    return true
+		puts "listening on port #{@port}"
   end
 
   def listen
+
       begin
-        text = @socket.recvfrom(16)
-        @delegate.timed_event if text[0].include? "bang"
-    		sleep LISTEN_DELAY
+        text = @socket.recvfrom(10)
+        @delegate.timed_event if text[0] == '!'
+    		sleep LOOP_DELAY
       rescue
-        @socket.close
-        @socket = nil
-        connect
       end
 
       false #return false runs forever if used in block_loop - OWL.rb
