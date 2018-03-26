@@ -4,7 +4,7 @@ require_relative "metronome"
 
 class TimingServer
 
-  BPM = 120.0
+  BPM = 240.0
 
   def initialize
     @last_tick = Time.now.to_f

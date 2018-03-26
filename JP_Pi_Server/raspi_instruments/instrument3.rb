@@ -21,9 +21,7 @@ class Instrument3 < RaspiInstrument
   end
 
   def play args
-    puts "bink(3): #{args[0]} : #{args[1]} : #{@count}"
-    @count += 1
-    #raise 'over-ride this method in child class'
+    `aplay ./sounds/#{@metro.sound}`
   end
 
 end
