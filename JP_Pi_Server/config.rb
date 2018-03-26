@@ -3,6 +3,7 @@ require 'yaml'
 class Config
 
   MetronomeData = Struct.new(:ip, :port, :rhythm)
+  @@metronomes = nil
 
   def self.setup
     path = File.join(__dir__, "config.yaml")
