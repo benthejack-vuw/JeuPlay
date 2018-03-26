@@ -28,4 +28,4 @@ class Instrument3 < RaspiInstrument
 
 end
 
-Instrument2.new
+Instrument3.new

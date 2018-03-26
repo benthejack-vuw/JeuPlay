@@ -7,6 +7,8 @@ class TimingServer
   BPM = 120.0
 
   def initialize
+    @last_tick = Time.now.to_f
+    @delay = 60.0/BPM
     Config.setup
     create_instruments
   end
@@ -19,8 +21,12 @@ class TimingServer
 
   def run_loop
     while true
-      @metronomes.each{ |metronome| metronome.tick }
-      sleep 60.0/BPM
+      t = Time.now.to_f
+      if t - @last_tick > @delay
+        @metronomes.each{ |metronome| metronome.tick }
+        @last_tick = t
+      end
+      sleep 0.001
     end
   end
 
