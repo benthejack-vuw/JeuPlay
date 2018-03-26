@@ -2,7 +2,7 @@ require 'socket'
 require 'serialport'
 require_relative 'OWL'
 require_relative '../config'
-require_relative 'timingConnection'
+require_relative 'channelSubscriber'
 
 class RaspiInstrument
 
