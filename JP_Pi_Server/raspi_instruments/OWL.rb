@@ -77,9 +77,8 @@ class OWL
 
   if conn.eof?
 		puts "restarting arduino"
-		conn.dtr = 1
-		sleep 4
-    conn.dtr = 0
+		conn.write "reset"
+		sleep 8
 	end
 
 	handshake = conn.readline.chomp
