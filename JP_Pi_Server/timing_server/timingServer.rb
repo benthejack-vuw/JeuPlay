@@ -1,12 +1,10 @@
 require 'socket'
+require_relative "../serverConfig"
 require_relative "timedInstrument"
 
 class TimingServer
 
   BPM = 120.0
-
-  IPS = ["10.0.1.50", "10.0.1.50", "10.0.1.50", "10.0.1.50"]
-
   BEAT_BOARD = [
     [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -20,7 +18,7 @@ class TimingServer
 
   def create_instruments
     @instruments = BEAT_BOARD.each_with_index.map do |timing_data, i|
-        TimedInstrument.new timing_data, IPS[i], 2000+i
+        TimedInstrument.new timing_data, ServerConfig::INSTRUMENT_IPS[i][0], ServerConfig::INSTRUMENT_IPS[i][1]
     end
 
     @instruments.each do |instrument|

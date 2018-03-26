@@ -13,9 +13,11 @@ class TimingConnection
   def connect
     puts "waiting for timing  server"
 		begin
-			@socket = TCPSocket.new @ip, @port
+			#@socket = TCPSocket.new @ip, @port
+      @socket = UDPSocket.new
+      @socket.bind(@ip, @port)
 		rescue
-			@socket = false
+			@socket = nil
       sleep 1.0/10.0
 		end until @socket
 		puts "connected to timing server"
@@ -24,8 +26,8 @@ class TimingConnection
 
   def listen
       begin
-        text = @socket.gets
-        puts text
+        text = @socket.recvfrom(16)#@socket.gets
+        p text
         @delegate.timed_event if text.include? "bang"
     		sleep LISTEN_DELAY
       rescue
@@ -33,7 +35,7 @@ class TimingConnection
         @socket = nil
         connect
       end
-      
+
       false #return false runs forever if used in block_loop - OWL.rb
   end
 

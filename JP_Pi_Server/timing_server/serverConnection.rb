@@ -15,8 +15,13 @@ class ServerConnection
   end
 
   def connect_UDP
-      @server = UDPSocket.new
-      @server.connect(@ip, @port)
+      begin
+        @server = UDPSocket.new
+        #@server.connect(@ip, @port)
+      rescue Errno::ECONNREFUSED
+        @server = nil
+        sleep 0.01
+      end until (@server != nil)
   end
 
   def connected
@@ -27,8 +32,8 @@ class ServerConnection
   def send_message message
     begin
       #@client.puts message
-      @server.send "message", 0
-    rescue Errno::EPIPE
+      @server.send "message", 0, @ip, @port
+    rescue Errno::ECONNREFUSED
       #@server.close
       #@client = nil
       #connect
