@@ -16,12 +16,13 @@ class OWL
   def connect
     block_loop do
       #LINUX
-      ports = Dir.glob("/dev/ttyUSB*") - DISCARD_PORTS
+      #ports = Dir.glob("/dev/ttyUSB*") - DISCARD_PORTS
 
       #MAC
-      #ports = Dir.glob("/dev/{tty,cu}.*") - DISCARD_PORTS
+      ports = Dir.glob("/dev/{tty,cu}.*") - DISCARD_PORTS
 
       ports.each{ | p | attempt_connection p; break if @serial }
+      raise "no USB devices found" if ports.empty?
       ( @serial != nil )
    	 end
      sleep 1
@@ -37,16 +38,31 @@ class OWL
   def read_and_respond
 
     begin
+      command = @serial.readline.chomp "|\r\n"
+      args = command.split("~")
+      message = args.shift()
+    rescue EOFError
+      return
+    end
+
+    ( @delegate.respond_to?( message ) ) ? @delegate.send( message, args ) : puts( "'#{message}' is not implemented in #{@delegate.class.name}" )
+
+  end
+
+  def purge_handshake
+
+    begin
       unless !@serial.eof?
         command = @serial.readline.chomp "|\r\n"
         args = command.split("~")
         message = args.shift()
       end
+    rescue EOFError
+      return
     end until message && !message.include?("arduino")
 
-    ( @delegate.respond_to?( message ) ) ? @delegate.send( message, args ) : puts( "'#{message}' is not implemented in #{@delegate.class.name}" )
-
   end
+
 
   def run
     block_loop do
@@ -75,21 +91,23 @@ class OWL
 
   def attempt_handshake conn
 
-  if conn.eof?
-		puts "restarting arduino"
-		conn.write "reset"
-		sleep 8
-	end
+    begin
+    	handshake = conn.readline.chomp
+    		if handshake.include? "arduino"
+    			@serial = conn
+    			@serial.write "arduinoServer"
+    			sleep 2
+    			@serial.flush_input
+          purge_handshake
+    			puts "CONNECTED TO ARDUINO"
+    		end
+    rescue EOFError
+      puts "restarting arduino"
+  		conn.write "reset_connection"
+  		sleep 8
+    end
 
-	handshake = conn.readline.chomp
-		if handshake.include? "arduino"
-			@serial = conn
-			@serial.write "arduinoServer"
-			sleep 2
-			@serial.flush_input
-			puts "CONNECTED TO ARDUINO"
-		end
-    (@serial != nil)
+    (@serial != nil) #block_loop run until serial is connected
   end
 
 end

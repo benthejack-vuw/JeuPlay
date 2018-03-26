@@ -7,13 +7,23 @@ require_relative 'timingConnection'
 class RaspiInstrument
 
 	def initialize instrument_index
-		port =  ServerConfig::PORTS[instrument_index]
-		server_ip = ServerConfig::IP_ADDRESS
+		@port =  ServerConfig::PORTS[instrument_index]
+		@server_ip = ServerConfig::IP_ADDRESS
+	end
 
-		@timing_connection = TimingConnection.new self, server_ip, port
-		@timing_connection.connect
+	def connect_to_arduino
 		@owl = OWL.new self, 9600
-		@owl.run {@timing_connection.listen} #this runs as a loop, if the block returns false (it does) this will run forever
+	end
+
+	def connect_to_timing_server
+		@timing_connection = TimingConnection.new self, @server_ip, @port
+		@timing_connection.connect
+	end
+
+	def run
+		@owl.run do
+			@timing_connection.listen
+		end #this runs as a loop, if the block returns false (it does) this will run forever
 	end
 
 	def println args
@@ -32,7 +42,6 @@ class RaspiInstrument
 	end
 
 	def jp_data args
-		puts args
 		play args
 	end
 
@@ -41,5 +50,3 @@ class RaspiInstrument
 	end
 
 end
-
-jp_serial_server = RaspiInstrument.new 2

@@ -18,11 +18,13 @@ void setup() {
 void loop() {
 
   OWLCommand c = owl.pollSerial();
-  if(!c.empty){
+  if(c.command.indexOf("jp_data") >= 0){
       String args[2];
       args[0] = joystick.stick_direction().as_string();
       args[1] = String(meter->distance());
       owl.sendCommand("jp_data", 2, args);
+  }else if(c.command.indexOf("reset_connection") >= 0){
+      owl.reset();
   }
 
   delay(10);

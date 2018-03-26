@@ -17,7 +17,11 @@ class TimingServer
 
   def create_instruments
     @instruments = BEAT_BOARD.each_with_index.map do |timing_data, i|
-      TimedInstrument.new timing_data, 2000+i
+        TimedInstrument.new timing_data, 2000+i
+    end
+    
+    @instruments.each do |instrument|
+      instrument.connect
     end
   end
 
@@ -30,4 +34,5 @@ class TimingServer
 
 end
 
-TimingServer.new
+server = TimingServer.new
+server.run_loop

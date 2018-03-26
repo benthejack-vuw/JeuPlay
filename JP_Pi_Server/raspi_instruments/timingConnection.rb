@@ -1,7 +1,7 @@
 class TimingConnection
 
   @@delegate_error = "TimingConnection's delegate must implement a timed_event method"
-  LISTEN_DELAY = 1.0/50.0 #50th of a second
+  LISTEN_DELAY = 1.0/100.0 #50th of a second
 
   def initialize delegate, ip, port
     @delegate = delegate
@@ -19,13 +19,22 @@ class TimingConnection
       sleep 1.0/10.0
 		end until @socket
 		puts "connected to timing server"
+    return true
   end
 
   def listen
-      text = @socket.gets
-      @delegate.timed_event if text.include? "bang"
-  		sleep LISTEN_DELAY
-  		false #return false runs forever if used in block_loop - OWL.rb
+      begin
+        text = @socket.gets
+        puts text
+        @delegate.timed_event if text.include? "bang"
+    		sleep LISTEN_DELAY
+      rescue
+        @socket.close
+        @socket = nil
+        connect
+      end
+      
+      false #return false runs forever if used in block_loop - OWL.rb
   end
 
 end
