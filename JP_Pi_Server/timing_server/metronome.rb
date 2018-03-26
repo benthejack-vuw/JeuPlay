@@ -11,7 +11,7 @@ class Metronome
 
   def tick
     Thread.new{
-      @channel.send_message "!" if @rhythm[@beat] == '1'
+      @channel.send_message "!" if @rhythm[@beat] > 0
       @beat = (@beat+1) % @rhythm.length
     }
   end

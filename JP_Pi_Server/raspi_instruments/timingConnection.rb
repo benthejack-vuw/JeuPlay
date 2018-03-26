@@ -22,7 +22,7 @@ class ChannelSubscriber
 
       begin
         text = @socket.recvfrom(10)
-        @delegate.timed_event if text[0] == '!'
+        @delegate.timed_event if text[0].include?('!')
     		sleep LOOP_DELAY
       rescue
       end
