@@ -22,6 +22,7 @@ class Instrument2 < RaspiInstrument
 
   def play args
     puts "bong(2): #{args[0]} : #{args[1]} : #{@count}"
+    `omxplayer ./sounds/#{@metro.sound}`
     @count += 1
     #raise 'over-ride this method in child class'
   end

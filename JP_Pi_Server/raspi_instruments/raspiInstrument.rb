@@ -7,7 +7,8 @@ require_relative 'channelSubscriber'
 class RaspiInstrument
 
 	def initialize instrument_index
-		@port =  Config.metronomes[instrument_index].port
+		@metro = Config.metronomes[instrument_index]
+		@port =  @metro.port
 	end
 
 	def connect_to_arduino
