@@ -10,14 +10,12 @@ class TimingConnection
   end
 
   def connect
-    puts "waiting for timing  server"
+    puts "connecting to timing  server"
 		begin
       @socket = UDPSocket.new
       @socket.bind("0.0.0.0", @port)
 		rescue
-			@socket = nil
-      sleep 1.0/10.0
-		end until @socket
+		end
 		puts "connected to timing server"
     return true
   end

@@ -1,39 +1,32 @@
 require 'socket'
-require_relative "../serverConfig.rb"
-require_relative "timedInstrument"
+require_relative "../config"
+require_relative "metronome"
 
 class TimingServer
 
   BPM = 120.0
-  BEAT_BOARD = [
-    [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0],
-    [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0]
-  ]
 
   def initialize
+    Config.setup
     create_instruments
   end
 
   def create_instruments
-    @instruments = BEAT_BOARD.each_with_index.map do |timing_data, i|
-        TimedInstrument.new timing_data, ServerConfig::INSTRUMENT_IPS[i][0], ServerConfig::INSTRUMENT_IPS[i][1]
-    end
-
-    @instruments.each do |instrument|
-      instrument.connect
+    @metronomes = Config.metronomes.each_with_index.map do |metro_data, i|
+        Metronome.new metro_data
     end
   end
 
   def run_loop
     while true
-      @instruments.each{ |instrument| instrument.play_note }
+      @metronomes.each{ |metronome| metronome.tick }
       sleep 60.0/BPM
     end
   end
 
 end
 
-server = TimingServer.new
-server.run_loop
+if __FILE__ == $0
+  server = TimingServer.new
+  server.run_loop
+end
