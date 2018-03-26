@@ -1,5 +1,5 @@
 class ChannelSubscriber
-
+ 
   DELEGATE_ERROR = "ChannelSubscriber's delegate must implement a timed_event method"
   LOOP_DELAY = 1.0/100.0 #50th of a second
 
