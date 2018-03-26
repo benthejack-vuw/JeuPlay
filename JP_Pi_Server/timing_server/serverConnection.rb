@@ -6,8 +6,10 @@ class ServerConnection
   end
 
   def connection_loop
+    puts "connecting to client"
     @server = TCPServer.new @port
-    @client = server.accept
+    @client = @server.accept
+    puts "connected to client"
   end
 
   def send_message message
