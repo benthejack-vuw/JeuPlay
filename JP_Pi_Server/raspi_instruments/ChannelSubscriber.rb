@@ -6,8 +6,8 @@ class ChannelSubscriber
   def initialize delegate
     @delegate = delegate
     raise @@delegate_error unless @delegate.respond_to? "timed_event"
-    @ip =  IPAddr.new(Config::SERVER.ip).hton + IPAddr.new("0.0.0.0").hton
-    @port = Config::SERVER.ip
+    @ip =  IPAddr.new(Config::SERVER[:ip]).hton + IPAddr.new("0.0.0.0").hton
+    @port = Config::SERVER[:port]
   end
 
   def connect
