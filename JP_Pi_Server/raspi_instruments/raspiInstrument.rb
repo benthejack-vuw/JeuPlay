@@ -8,7 +8,6 @@ class RaspiInstrument
 
 	def initialize instrument_index
 		@metro = Config.metronomes[instrument_index]
-		@port =  @metro.port
 	end
 
 	def connect_to_arduino
@@ -16,7 +15,7 @@ class RaspiInstrument
 	end
 
 	def connect_to_timing_server
-		@channel_sub = ChannelSubscriber.new self, @port
+		@channel_sub = ChannelSubscriber.new self
 		@channel_sub.connect
 	end
 

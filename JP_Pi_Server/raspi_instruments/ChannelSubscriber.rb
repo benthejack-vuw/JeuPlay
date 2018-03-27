@@ -3,7 +3,7 @@ class ChannelSubscriber
   DELEGATE_ERROR = "ChannelSubscriber's delegate must implement a timed_event method"
   LOOP_DELAY = 1.0/500.0 #50th of a second
 
-  def initialize delegate, port
+  def initialize delegate
     @delegate = delegate
     raise @@delegate_error unless @delegate.respond_to? "timed_event"
   end
