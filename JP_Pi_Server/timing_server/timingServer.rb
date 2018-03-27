@@ -1,32 +1,31 @@
 require 'socket'
 require_relative "../config"
-require_relative "metronome"
+require_relative "shouter"
 
 class TimingServer
 
-  BPM = 240.0
+  BPM     = 480.0
+  MINUTE  = 60.0
+  DELAY   = 0.05
 
   def initialize
-    @last_tick = Time.now.to_f
-    @delay = 60.0/BPM
     Config.setup
     create_instruments
-  end
-
-  def create_instruments
-    @metronomes = Config.metronomes.each_with_index.map do |metro_data, i|
-        Metronome.new metro_data
-    end
+    @last_tick = Time.now.to_f
+    @delay = MINUTE/BPM
+    @shouter = Shouter.new
+    @shouter.start
   end
 
   def run_loop
+    t = 0.0           # no Garbage collection
     while true
       t = Time.now.to_f
-      if t - @last_tick > @delay
-        @metronomes.each{ |metronome| metronome.tick }
+      if ( t - @last_tick ) > @delay
+        @shouter.send_message "bang"
         @last_tick = t
       end
-      sleep 0.001
+      sleep( ( t + DELAY ) - Time.now.to_f )
     end
   end
 
