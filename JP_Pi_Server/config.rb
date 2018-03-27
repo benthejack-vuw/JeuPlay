@@ -1,7 +1,7 @@
 require 'yaml'
 
 class Config
-  SERVER = {ip:"10.0.1.50", port: "2000"}
+  SERVER = {ip:"10.0.1.50", port: "4000"}
   BANG = "!"
   MetronomeData = Struct.new(:rhythm, :sound)
   @@metronomes = nil

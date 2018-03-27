@@ -12,7 +12,7 @@ class Shouter
   end
 
   def send_message message
-    @server.send message, 0, @ip, @port
+    @server.send message, 0, nil, @port
   end
 
 end

@@ -11,7 +11,7 @@ class ChannelSubscriber
   def connect
 		begin
       @socket = UDPSocket.new
-      @socket.bind(Config::SERVER.ip, Config::SERVER.port)
+      @socket.bind("0.0.0.0", Config::SERVER.port)
 		rescue
 		end
 		puts "listening to #{Config::SERVER[:ip]} on port #{Config::SERVER[:port]}"
