@@ -21,7 +21,9 @@ class Instrument2 < RaspiInstrument
   end
 
   def play args
-    `aplay ./sounds/#{@metro.sound}`
+    Thread.new{
+      `aplay ./sounds/#{@metro.sound}`
+    }
   end
 
 end
