@@ -12,7 +12,7 @@ class Instrument2 < RaspiInstrument
   def run
     while true
       @channel_sub.listen
-      sleep 0.001
+      sleep 0.01
     end
   end
 

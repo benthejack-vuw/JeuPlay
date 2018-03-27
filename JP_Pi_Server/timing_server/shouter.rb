@@ -1,18 +1,19 @@
 class Shouter
 
   def initialize
-    @ip = Config::SERVER[:ip]
+    @ip = '<broadcast>'
     @port = Config::SERVER[:port]
     start
   end
 
   def start
-    @server = UDPSocket.open
-    @server.setsockopt(Socket::IPPROTO_IP, Socket::IP_TTL, [1].pack('i'))
+    @server = UDPSocket.new
+    @server.setsockopt(Socket::SOL_SOCKET, Socket::SO_BROADCAST, true)
   end
 
   def send_message message
-    @server.send message, 0, @ip, @port
+    puts "#{message} to: #{@ip}, #{@port}"
+    @server.send( message, 0, @ip, @port )
   end
 
 end
