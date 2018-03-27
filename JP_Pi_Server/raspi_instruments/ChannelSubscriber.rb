@@ -20,11 +20,10 @@ class ChannelSubscriber
 
   def listen
       begin
-        text, sender = @socket.recvfrom(16)
-        @delegate.timed_event if text.include?(Config::BANG)
-    		sleep LOOP_DELAY
+          text, sender = @socket.recvfrom(16)
+          @delegate.timed_event if text.include?(Config::BANG)
+    		  sleep LOOP_DELAY
       end
-
       false #return false runs forever if used in block_loop - OWL.rb
   end
 

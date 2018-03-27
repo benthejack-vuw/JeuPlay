@@ -7,7 +7,8 @@ require_relative 'channelSubscriber'
 class RaspiInstrument
 
 	def initialize instrument_index
-		@metro = Config.metronomes[instrument_index]
+		@data = Config.instruments[instrument_index]
+		@beat = 0;
 	end
 
 	def connect_to_arduino
@@ -41,11 +42,12 @@ class RaspiInstrument
 	end
 
 	def jp_data args
-		play args
+		play args if @data.rhythm[@beat] == '1'
+		@beat = (@beat+1) % @data.rhythm.length
 	end
 
 	def play args
-		raise 'over-ride this method in child class'
+		  raise "implement play in subclass of RaspiInstrument"
 	end
 
 end

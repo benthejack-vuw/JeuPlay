@@ -1,25 +1,27 @@
 require 'yaml'
 
 class Config
+
   SERVER = {port: "5200"}
   BANG = "!"
-  MetronomeData = Struct.new(:rhythm, :sound)
-  @@metronomes = nil
+  InstrumentData = Struct.new(:rhythm, :sound)
+
+  @@instruments = nil
 
   def self.setup
     path = File.join(__dir__, "config.yaml")
 
     if File.exists? path
-      @@metronomes = read(path)
+      @@instruments = read(path)
     else
-      @@metronomes = defaults
-      save path, @@metronomes
+      @@instruments = defaults
+      save path, @@instruments
     end
   end
 
-  def self.metronomes
-    self.setup unless @@metronomes
-    @@metronomes
+  def self.instruments
+    self.setup unless @@instruments
+    @@instruments
   end
 
   def self.read path
@@ -34,10 +36,10 @@ class Config
 
   def self.defaults
     [
-      MetronomeData.new([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0], "one.WAV"),
-      MetronomeData.new([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], "two.WAV"),
-      MetronomeData.new([1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0], "three.WAV"),
-      MetronomeData.new([1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0], "four.WAV")
+      InstrumentData.new("1010101010101010", "one.WAV"),
+      InstrumentData.new("1111111111111111", "two.WAV"),
+      InstrumentData.new("1110111011101110", "three.WAV"),
+      InstrumentData.new("1100110011001100", "four.WAV")
     ]
   end
 

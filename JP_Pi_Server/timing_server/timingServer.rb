@@ -4,7 +4,7 @@ require_relative "shouter"
 
 class TimingServer
 
-  BPM     = 480.0
+  BPM     = 240.0
   MINUTE  = 60.0
   DELAY   = 0.05
 
@@ -16,14 +16,9 @@ class TimingServer
   end
 
   def run_loop
-    t = 0.0           # no Garbage collection
     while true
-      t = Time.now.to_f
-      if ( t - @last_tick ) > @delay
-        @shouter.send_message Config::BANG
-        @last_tick = t
-      end
-      sleep( ( t + DELAY ) - Time.now.to_f )
+      @shouter.send_message Config::BANG
+      sleep(@delay)
     end
   end
 
