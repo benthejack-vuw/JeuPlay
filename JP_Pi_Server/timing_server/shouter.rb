@@ -8,11 +8,11 @@ class Shouter
 
   def start
     @server = UDPSocket.open
-    @server.setsockopt(Socket::SOL_SOCKET, Socket::SO_BROADCAST, true)
+    @server.setsockopt(Socket::IPPROTO_IP, Socket::IP_TTL, [1].pack('i'))
   end
 
   def send_message message
-    @server.send message, 0, nil, @port
+    @server.send message, 0, @ip, @port
   end
 
 end

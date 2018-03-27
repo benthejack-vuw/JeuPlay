@@ -6,12 +6,15 @@ class ChannelSubscriber
   def initialize delegate
     @delegate = delegate
     raise @@delegate_error unless @delegate.respond_to? "timed_event"
+    @ip =  IPAddr.new(Config::SERVER.ip).hton + IPAddr.new("0.0.0.0").hton
+    @port = Config::SERVER.ip
   end
 
   def connect
 		begin
       @socket = UDPSocket.new
-      @socket.bind("0.0.0.0", Config::SERVER.port)
+      @socket.setsockopt(Socket::IPPROTO_IP, Socket::IP_ADD_MEMBERSHIP, @ip)
+      @socket.bind(Socket::INADDR_ANY, @port)
 		rescue
 		end
 		puts "listening to #{Config::SERVER[:ip]} on port #{Config::SERVER[:port]}"
