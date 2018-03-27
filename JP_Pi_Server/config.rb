@@ -43,5 +43,5 @@ class Config
 end
 
 if __FILE__ == $0
-  ConfigData.setup
+  Config.setup
 end
