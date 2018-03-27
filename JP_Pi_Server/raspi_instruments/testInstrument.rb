@@ -2,8 +2,8 @@ require_relative "raspiInstrument"
 
 class TestInstrument < RaspiInstrument
 
-  def initialize
-    super 1
+  def initialize num
+    super num
     @count = 0
     @beat = 0;
     connect_to_timing_server
