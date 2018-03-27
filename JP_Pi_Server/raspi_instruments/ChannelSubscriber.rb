@@ -21,7 +21,6 @@ class ChannelSubscriber
   def listen
       begin
         text, sender = @socket.recvfrom(16)
-        p text
         @delegate.timed_event if text.include?(Config::BANG)
     		sleep LOOP_DELAY
       end
