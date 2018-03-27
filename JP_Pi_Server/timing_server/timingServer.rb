@@ -10,10 +10,9 @@ class TimingServer
 
   def initialize
     Config.setup
-    create_instruments
     @last_tick = Time.now.to_f
     @delay = MINUTE/BPM
-    @shouter = Shouter.new
+    @shouter = Shouter.new Config.metronomes.first.port
     @shouter.start
   end
 
