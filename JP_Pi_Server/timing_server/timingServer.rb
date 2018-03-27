@@ -22,7 +22,7 @@ class TimingServer
     while true
       t = Time.now.to_f
       if ( t - @last_tick ) > @delay
-        @shouter.send_message "bang"
+        @shouter.send_message Config::BANG
         @last_tick = t
       end
       sleep( ( t + DELAY ) - Time.now.to_f )

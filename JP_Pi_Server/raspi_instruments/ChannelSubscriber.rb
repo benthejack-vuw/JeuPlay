@@ -22,7 +22,7 @@ class ChannelSubscriber
 
       begin
         text = @socket.recvfrom(16)
-        @delegate.timed_event if text[0].include?('bang')
+        @delegate.timed_event if text[0].include?(Config::BANG)
     		sleep LOOP_DELAY
       rescue
       end

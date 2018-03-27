@@ -2,6 +2,7 @@ require 'yaml'
 
 class Config
 
+  BANG = "!"
   MetronomeData = Struct.new(:port, :rhythm, :sound)
   @@metronomes = nil
 
