@@ -1,9 +1,9 @@
 require 'yaml'
 
 class Config
-
+  SERVER = {ip:"10.0.1.50", port: "2000"}
   BANG = "!"
-  MetronomeData = Struct.new(:port, :rhythm, :sound)
+  MetronomeData = Struct.new(:rhythm, :sound)
   @@metronomes = nil
 
   def self.setup
@@ -34,10 +34,10 @@ class Config
 
   def self.defaults
     [
-      MetronomeData.new(2000, [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0], "one.WAV"),
-      MetronomeData.new(2000, [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], "two.WAV"),
-      MetronomeData.new(2000, [1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0], "three.WAV"),
-      MetronomeData.new(2000, [1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0], "four.WAV")
+      MetronomeData.new([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0], "one.WAV"),
+      MetronomeData.new([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], "two.WAV"),
+      MetronomeData.new([1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,0], "three.WAV"),
+      MetronomeData.new([1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0], "four.WAV")
     ]
   end
 

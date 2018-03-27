@@ -5,17 +5,16 @@ class ChannelSubscriber
 
   def initialize delegate, port
     @delegate = delegate
-    @port = port
     raise @@delegate_error unless @delegate.respond_to? "timed_event"
   end
 
   def connect
 		begin
       @socket = UDPSocket.new
-      @socket.bind("0.0.0.0", @port)
+      @socket.bind(Config::SERVER.ip, Config::SERVER.port)
 		rescue
 		end
-		puts "listening on port #{@port}"
+		puts "listening to #{Config::SERVER[:ip]} on port #{Config::SERVER[:port]}"
   end
 
   def listen

@@ -12,8 +12,7 @@ class TimingServer
     Config.setup
     @last_tick = Time.now.to_f
     @delay = MINUTE/BPM
-    @shouter = Shouter.new Config.metronomes.first.port
-    @shouter.start
+    @shouter = Shouter.new
   end
 
   def run_loop
