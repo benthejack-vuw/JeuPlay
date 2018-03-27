@@ -39,7 +39,8 @@ class Config
       InstrumentData.new("1010101010101010", "one.WAV"),
       InstrumentData.new("1111111111111111", "two.WAV"),
       InstrumentData.new("1110111011101110", "three.WAV"),
-      InstrumentData.new("1100110011001100", "four.WAV")
+      InstrumentData.new("1100110011001100", "four.WAV"),
+      InstrumentData.new("0011001100110011", "five.WAV")
     ]
   end
 
