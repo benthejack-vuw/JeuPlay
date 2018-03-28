@@ -9,9 +9,10 @@ class Aplay
 
   def run
     @running = true
+
     while @running
      x = @ip.read.chomp
-     %x{aplay #{x}}
+     Thread.new{ %x{aplay #{x}} }
      @running = false if x == "stop"
     end
     shutdown
