@@ -1,3 +1,4 @@
+require_relative "Aplay"
 require_relative "raspiInstrument"
 
 class TestInstrument < RaspiInstrument
@@ -7,7 +8,9 @@ class TestInstrument < RaspiInstrument
     @count = 0
     @beat = 0;
     connect_to_timing_server
+    @op = create_pipe
     run
+    
   end
 
   def run
@@ -23,15 +26,23 @@ class TestInstrument < RaspiInstrument
   end
 
   def play args
-    puts "#{@count}"
-    Thread.new{
-    `aplay ./sounds/#{@data.sound}`
-    }
-    @count += 1
+    @op.write "./sounds/#{@data.sound}"
+  end
+
+  def create_pipe
+    Pipe.new("Aplay_IN").tap{|p| p.open_for_output }
   end
 
 end
 
 if __FILE__ == $0
+
+  fork do
+      a = Aplay.new
+      a.run
+  end
+  
 	instrument = TestInstrument.new ARGV[0].to_i
+
 end
+
