@@ -1,4 +1,4 @@
-require_relative "Aplay"
+require_relative "aplay"
 require_relative "raspiInstrument"
 
 class TestInstrument < RaspiInstrument
@@ -10,7 +10,7 @@ class TestInstrument < RaspiInstrument
     connect_to_timing_server
     @op = create_pipe
     run
-    
+
   end
 
   def run
@@ -41,8 +41,7 @@ if __FILE__ == $0
       a = Aplay.new
       a.run
   end
-  
+
 	instrument = TestInstrument.new ARGV[0].to_i
 
 end
-
