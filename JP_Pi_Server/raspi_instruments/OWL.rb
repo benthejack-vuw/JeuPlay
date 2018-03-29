@@ -16,10 +16,10 @@ class OWL
   def connect
     block_loop do
       #LINUX
-      #ports = Dir.glob("/dev/ttyUSB*") - DISCARD_PORTS
+      ports = Dir.glob("/dev/ttyUSB*") - DISCARD_PORTS
 
       #MAC
-      ports = Dir.glob("/dev/{tty,cu}.*") - DISCARD_PORTS
+      #ports = Dir.glob("/dev/{tty,cu}.*") - DISCARD_PORTS
 
       ports.each{ | p | attempt_connection p; break if @serial }
       raise "no USB devices found" if ports.empty?
@@ -31,8 +31,8 @@ class OWL
 
 	end
 
-  def write command, message
-    @serial.write "#{command}~#{message}|"
+  def write command, message, port=@serial
+    port.write "#{command}~#{message}|"
   end
 
   def read_and_respond
@@ -90,9 +90,9 @@ class OWL
   end
 
   def attempt_handshake conn
-
+    puts
     begin
-    	handshake = conn.readline.chomp
+    	handshake = conn.readline
     		if handshake.include? "arduino"
     			@serial = conn
     			@serial.write "arduinoServer"
@@ -103,7 +103,7 @@ class OWL
     		end
     rescue EOFError
       puts "restarting arduino"
-  		conn.write "reset_connection"
+  		write "reset", "now", conn
   		sleep 10
     end
 

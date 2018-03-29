@@ -23,7 +23,7 @@ void loop() {
       args[0] = joystick.stick_direction().as_string();
       args[1] = String(meter->distance());
       owl.sendCommand("jp_data", 2, args);
-  }else if(c.command.indexOf("reset_connection") >= 0){
+  }else if(c.command.indexOf("reset") >= 0){
       owl.reset();
   }
 
