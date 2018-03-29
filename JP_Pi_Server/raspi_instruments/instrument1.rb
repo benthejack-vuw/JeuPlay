@@ -18,6 +18,8 @@ class Instrument1 < RaspiInstrument
     if(@data.rhythm[@beat] == '1')
       @pipe.write "./sounds/one.WAV" if args[0] == "LEFT"
       @pipe.write "./sounds/two.WAV" if args[0] == "RIGHT"
+      @pipe.write "./sounds/three.WAV" if args[0] == "UP"
+      @pipe.write "./sounds/four.WAV" if args[0] == "DOWN"
     end
 
     @beat = (@beat+1) % @data.rhythm.length
