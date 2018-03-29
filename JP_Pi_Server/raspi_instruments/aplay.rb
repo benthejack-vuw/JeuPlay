@@ -2,17 +2,26 @@ require_relative 'pipe'
 
 class Aplay
 
+
   def initialize
     @running = true
-    @ip = create_pipe
+    @ip = Pipe.new(pipe_file).tap{|p| p.open_for_input }
+  end
+
+  def pipe_file
+    "Aplay_IN"
+  end
+
+  def pipe
+    @ip
   end
 
   def run
     @running = true
 
     while @running
-     x = @ip.read.chomp
-     Thread.new{ %x{aplay #{x}} }
+     x = @ip.read
+     Thread.new{ %x{afplay #{x}} } if x
      @running = false if x == "stop"
     end
     shutdown
@@ -20,11 +29,6 @@ class Aplay
 
   def shutdown
     @ip.close
-  end
-
-  def create_pipe
-    %x{ rm "#{self.class.name}_IN" } if File.exists?( "#{self.class.name}_IN")
-    Pipe.new("#{self.class.name}_IN").tap{|p| p.open_for_input }
   end
 
 end

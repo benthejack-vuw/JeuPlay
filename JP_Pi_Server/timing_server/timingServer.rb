@@ -4,7 +4,7 @@ require_relative "shouter"
 
 class TimingServer
 
-  BPM     = 240.0
+  BPM     = 120.0
   MINUTE  = 60.0
   DELAY   = 0.05
 

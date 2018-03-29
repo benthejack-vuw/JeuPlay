@@ -26,6 +26,10 @@ class RaspiInstrument
 		end #this runs as a loop, if the block returns false (it does) this will run forever
 	end
 
+	def create_pipe
+    @pipe = Pipe.new("Aplay_IN").tap{|p| p.open_for_output }
+  end
+
 	def println args
 		puts args
 	end

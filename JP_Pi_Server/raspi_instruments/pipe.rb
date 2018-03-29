@@ -22,7 +22,7 @@ class Pipe
 
   def write(value)
     @output.puts value
-    @output.flush 
+    @output.flush
   end
 
   def open_for_output
@@ -48,7 +48,7 @@ class Pipe
     if File.exists?(result)
       raise "file '#{result}' is not a pipe" unless File.pipe?(result)
     else
-       result = File.join("/tmp/","#{pipe_file_name}")
+       result = pipe_full_path
        %x{mkfifo #{result} }
     end
     result
@@ -58,10 +58,8 @@ class Pipe
     %x{rm #{@pipe_file} }
   end
 
-  def pipe_file_name
-    name = @pipe_file_name ? @pipe_file_name : "mddnlab"
-    name << "_" << self.class.name.downcase
-    # name << "." << SecureRandom.hex(8)
+  def pipe_full_path
+    File.join("/tmp/","#{@pipe_file_name}")
   end
 
 end

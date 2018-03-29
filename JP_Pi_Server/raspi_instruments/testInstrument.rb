@@ -8,7 +8,7 @@ class TestInstrument < RaspiInstrument
     @count = 0
     @beat = 0;
     connect_to_timing_server
-    @op = create_pipe
+    create_pipe
     run
 
   end
@@ -26,11 +26,7 @@ class TestInstrument < RaspiInstrument
   end
 
   def play args
-    @op.write "./sounds/#{@data.sound}"
-  end
-
-  def create_pipe
-    Pipe.new("Aplay_IN").tap{|p| p.open_for_output }
+    @pipe.write "./sounds/#{@data.sound}"
   end
 
 end
