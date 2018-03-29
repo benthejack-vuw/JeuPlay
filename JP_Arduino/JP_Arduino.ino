@@ -24,6 +24,7 @@ void loop() {
       args[1] = String(meter->distance());
       owl.sendCommand("jp_data", 2, args);
   }else if(c.command.indexOf("reset") >= 0){
+      digitalWrite(13,HIGH);
       owl.reset();
   }
 

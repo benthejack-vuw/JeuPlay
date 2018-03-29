@@ -95,6 +95,7 @@ class OWL
     	handshake = conn.readline
       puts "handshake: #{handshake}"
     		if handshake.include? "arduino"
+          puts "bleep?"
     			@serial = conn
     			@serial.write "arduinoServer"
     			sleep 2
