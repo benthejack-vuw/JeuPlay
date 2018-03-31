@@ -53,13 +53,14 @@ class OWL
 
 
     begin
+      puts "purge"
         command = @serial.readline.chomp "|\r\n"
         args = command.split("~")
         message = args.shift()
     rescue EOFError
       "EOF in PURGE"
       return
-    end until message && !message.include?("arduino")
+    end until !message || (message && !message.include?("arduino"))
 
   end
 
