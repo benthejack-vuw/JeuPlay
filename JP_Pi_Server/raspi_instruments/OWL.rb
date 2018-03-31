@@ -58,6 +58,7 @@ class OWL
         message = args.shift()
       end
     rescue EOFError
+      "EOF in PURGE"
       return
     end until message && !message.include?("arduino")
 
