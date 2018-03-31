@@ -50,15 +50,12 @@ class OWL
   end
 
   def purge_handshake
-
-
     begin
-      puts "purge"
-        command = @serial.readline.chomp "|\r\n"
-        args = command.split("~")
-        message = args.shift()
-    rescue EOFError
-      "EOF in PURGE"
+      command = @serial.readline.chomp "|\r\n"
+      args = command.split("~")
+      message = args.shift()
+    rescue
+      puts "error in purge"
       return
     end until !message || (message && !message.include?("arduino"))
 
