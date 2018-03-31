@@ -51,8 +51,9 @@ class OWL
 
   def purge_handshake
 
+
     begin
-      unless !@serial.eof?
+      unless @serial.eof?
         command = @serial.readline.chomp "|\r\n"
         args = command.split("~")
         message = args.shift()
