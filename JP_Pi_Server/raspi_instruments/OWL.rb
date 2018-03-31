@@ -53,11 +53,9 @@ class OWL
 
 
     begin
-      unless @serial.eof?
         command = @serial.readline.chomp "|\r\n"
         args = command.split("~")
         message = args.shift()
-      end
     rescue EOFError
       "EOF in PURGE"
       return
