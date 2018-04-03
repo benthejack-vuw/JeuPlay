@@ -1,4 +1,5 @@
 #include <Bounce2.h>
+#include "fastPin.h"
 
 #define MAX_MEASURERS 3
 
@@ -20,8 +21,6 @@ class JpDistanceMeter{
     long _last_update;
     float _dpr;
     int   _tpr;
-    uint8_t _pin1, _pin2;
-    uint8_t _pin1_shift, _pin2_shift, _pin1_mask, _pin2_mask;
-    volatile uint8_t * _pin1_buffer, * _pin2_buffer;
+    FastPin *_pin1, *_pin2;
 };
 

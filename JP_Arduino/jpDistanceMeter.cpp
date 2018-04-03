@@ -1,17 +1,5 @@
 #include <arduino.h>
-#include "./jpDistanceMeter.h"
-
-int BufferMask[8] =
-{
-  B00000001,
-  B00000010,
-  B00000100,
-  B00001000,
-  B00010000,
-  B00100000,
-  B01000000,
-  B10000000  // maybe signed bit .. unsigned int type preferable….
-};
+#include "jpDistanceMeter.h"
 
 //global variables and function for use with timer interrupt (can't use static members)
 JpDistanceMeter * _measurers[MAX_MEASURERS];
@@ -30,17 +18,19 @@ JpDistanceMeter::JpDistanceMeter(int ticks_per_revolution, float distance_per_re
 {
   //set up buffers for using instead of digitalRead this is 50x faster than using digitalRead()
   //http://www.instructables.com/id/Fast-digitalRead-digitalWrite-for-Arduino/
-  _pin1 = pin_1;
-  _pin2 = pin_2;
-  _pin1_buffer = pin_1 < 8 ? &PIND : &PINB;
-  _pin2_buffer = pin_2 < 8 ? &PIND : &PINB;
+  _pin1 = new FastPin(pin_1);
+  _pin2 = new FastPin(pin_2);
+
+  _pin1->mode(FP_INPUT, true);
+  _pin2->mode(FP_INPUT, true);
 
   pinMode(pin_1, INPUT);
   pinMode(pin_2, INPUT);
   digitalWrite(pin_1, HIGH);//activate internal pullup resistor
   digitalWrite(pin_2, HIGH);//activate internal pullup resistor
 
-  _debouncer.attach(_pin1);
+
+  _debouncer.attach(pin_1);
   _debouncer.interval(1);
 
   setup_timer(); 
@@ -50,7 +40,7 @@ void JpDistanceMeter::tick() {
   // the following line is thae same as: _ticks += digitalRead(_pin1) == digitalRead(_pin2) ? 1 : -1;
   _debouncer.update();
   if(_debouncer.risingEdge()){
-    _ticks += (bool)(*_pin2_buffer & BufferMask[_pin2%8]) ? 1 : -1;
+    _ticks += _pin2->read() ? 1 : -1;
     _last_update  = millis();
   }else{
     if(millis() - _last_update > _timeout){

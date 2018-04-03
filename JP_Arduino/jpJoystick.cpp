@@ -20,17 +20,6 @@ _top_pin(top_pin), _right_pin(right_pin), _bottom_pin(bottom_pin), _left_pin(lef
   _directions[8] = new StickDirection(MIDDLE);
 }
 
-void JpJoystick::powerPins(int one, int two, int three, int four){
-  pinMode(one, OUTPUT);
-  digitalWrite(one, HIGH);
-  pinMode(two, OUTPUT);
-  digitalWrite(two, HIGH);
-  pinMode(three, OUTPUT);
-  digitalWrite(three, HIGH);
-  pinMode(four, OUTPUT);
-  digitalWrite(four, HIGH);
-}
-
 void JpJoystick::debug_buttons(){
   JoystickMap buttons = JoystickMap(_top_pin, _right_pin, _bottom_pin, _left_pin);
   buttons.debug_pins();

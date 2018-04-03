@@ -6,7 +6,6 @@
 class JpJoystick{
   public:
     JpJoystick(int top_pin, int right_pin, int bottom_pin, int left_pin);
-    void powerPins(int one, int two, int three, int four);
     void debug_buttons();
     StickDirection stick_direction();    
     
