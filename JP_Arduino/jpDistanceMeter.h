@@ -14,7 +14,7 @@ class JpDistanceMeter{
     JpDistanceMeter(int ticks_per_revolution, float distance_per_revolution, int pin1, int pin2);
     Bounce _debouncer;
 
-    const int _timeout = 10000;
+    const int _timeout = 2000;
     
     volatile int _ticks;
     long _last_update;

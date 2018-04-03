@@ -15,4 +15,15 @@ private:
   uint8_t _pin_shifts[8];
   uint8_t * _read_buffers[8];
   uint8_t * _write_buffers[8];
+
+  int BufferMask[8] = {
+    B00000001,
+    B00000010,
+    B00000100,
+    B00001000,
+    B00010000,
+    B00100000,
+    B01000000,
+    B10000000
+  };
 };
