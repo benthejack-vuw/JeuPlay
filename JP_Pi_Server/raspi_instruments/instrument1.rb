@@ -1,4 +1,5 @@
 require_relative "raspiInstrument"
+require_relative "instrument"
 require_relative "aplay"
 
 
@@ -6,7 +7,11 @@ class Instrument1 < RaspiInstrument
 
   def initialize
     super 0
-    @beat = 0
+
+    @loops  = ["10101010", "11001100", "11101110", "11111111"];
+    @samples= ["./sounds/1_bassline/Bassline_1.wav", "./sounds/1_bassline/Bassline_2.wav", "./sounds/1_bassline/Bassline_3.wav", "./sounds/1_bassline/Bassline_4.wav"];
+    @player = new Instrument @loops, @samples
+
     create_pipe
     connect_to_arduino
     connect_to_timing_server
@@ -14,16 +19,15 @@ class Instrument1 < RaspiInstrument
   end
 
   def play args
-    puts "#{args[0]} #{args[1]} #{@beat}"
-    if(@data.rhythm[@beat] == '1')
-      @pipe.write "./sounds/one.WAV" if args[0] == "LEFT"
-      @pipe.write "./sounds/two.WAV" if args[0] == "RIGHT"
-      @pipe.write "./sounds/three.WAV" if args[0] == "UP"
-      @pipe.write "./sounds/four.WAV" if args[0] == "DOWN"
-    end
 
-    @beat = (@beat+1) % @data.rhythm.length
-    #raise 'over-ride this method in child class'
+    play_list = [
+      (args[0] == "LEFT" && args[1] == "RIGHT"),
+      (args[0] == "RIGHT" && args[1] == "LEFT"),
+      (args[0] == "LEFT" && (args[1] == "MIDDLE" || args[1] == "LEFT")),
+      (args[1] == "RIGHT" && (args[0] == "MIDDLE" || args[0] == "RIGHT"))
+    ]
+
+    @player.run play_list
   end
 
 end

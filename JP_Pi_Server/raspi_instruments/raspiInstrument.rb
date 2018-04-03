@@ -8,7 +8,6 @@ class RaspiInstrument
 
 	def initialize instrument_index
 		@data = Config.instruments[instrument_index]
-		@beat = 0;
 	end
 
 	def connect_to_arduino

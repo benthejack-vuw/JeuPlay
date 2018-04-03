@@ -1,30 +1,28 @@
-#include "jpJoystick.h"
-#include "jpDistanceMeter.h"
-#include "instaByte.h"
+#include <OWL.h>
+#include <jpJoystick.h>
 
-float count = 0;
-
-JpDistanceMeter * meter;
-JpJoystick js(2,3,4,5);
-
-uint8_t pins[8] = {4,5,6,7,8,9,10,11};
-uint8_t control_pins[1] = {14};
-InstaByte insta(pins);
+OWL owl;
+JpJoystick j1(2, 3, 4, 5);
+JpJoystick j2(6, 7, 8, 9);
 
 void setup() {
-  Serial.begin(115200);
-
-  pinMode(8,OUTPUT);
-  
-  meter = JpDistanceMeter::new_distance_meter(15, 165.0, 7, 6);
-  
-  insta.mode(FP_OUTPUT);
-  insta.set_control_pins(control_pins, 1);
+  owl.statusPin(13);
+  owl.connect(9600);
 }
 
 void loop() {
-  insta.write(meter->distance());
-  count = count+0.01;
+
+  OWLCommand c = owl.pollSerial();
+  if(c.command.indexOf("jp_data") >= 0){
+      String args[2];
+      args[0] = j1.stick_direction().as_string();
+      args[1] = j2.stick_direction().as_string();
+      owl.sendCommand("jp_data", 2, args);
+  }else if(c.command.indexOf("reset") >= 0){
+      digitalWrite(13,HIGH);
+      owl.reset();
+  }
+
   delay(10);
 }
 

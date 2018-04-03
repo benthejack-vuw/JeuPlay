@@ -2,7 +2,6 @@ require_relative 'pipe'
 
 class Aplay
 
-
   def initialize
     @running = true
     @ip = Pipe.new(pipe_file).tap{|p| p.open_for_input }
@@ -21,7 +20,7 @@ class Aplay
 
     while @running
      x = @ip.read
-     Thread.new{ %x{afplay #{x}} } if x
+     Thread.new { %x{aplay #{x}} } if x
      @running = false if x == "stop"
     end
     shutdown

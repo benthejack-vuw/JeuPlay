@@ -51,14 +51,11 @@ class OWL
 
   def purge_handshake
     begin
-      command = @serial.readline.chomp "|\r\n"
-      args = command.split("~")
-      message = args.shift()
+      command = @serial.readline
     rescue
       puts "error in purge"
       return
-    end until !message || (message && !message.include?("arduino"))
-
+    end until !command || !command.include?("arduino")
   end
 
 
@@ -93,7 +90,6 @@ class OWL
     	handshake = conn.readline
       puts "handshake: #{handshake}"
     		if handshake.include? "arduino"
-          puts "bleep?"
     			@serial = conn
     			@serial.write "arduinoServer"
     			sleep 2
