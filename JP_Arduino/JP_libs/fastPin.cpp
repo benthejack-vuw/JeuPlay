@@ -24,9 +24,9 @@ void FastPin::set_pin(uint8_t pin){
 
 FastPin::set_registers(uint8_t pin){
   if(pin <= 7){
-    _mode_register = &DDRB;
-    _read_register = &PINB;
-    _write_register = &PORTB;
+    _mode_register = &DDRD;
+    _read_register = &PIND;
+    _write_register = &PORTD;
   }else if(pin <= 13){
     _mode_register = &DDRB;
     _read_register = &PINB;
@@ -54,7 +54,7 @@ void FastPin::mode(const uint8_t &mode, bool skip_set = false){
 }
 
 bool FastPin::read(){
-  return (bool)*_read_register & pin_mask();
+  return (bool)((*_read_register & pin_mask()) >> _shift);
 }
 
 void FastPin::write(bool value){

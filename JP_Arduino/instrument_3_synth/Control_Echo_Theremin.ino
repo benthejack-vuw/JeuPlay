@@ -1,6 +1,8 @@
 #include "instaByte.h"
 uint8_t pins[8] = {2,3,4,5,6,7,8,10};
+uint8_t control_pins[1] = {14};
 InstaByte insta(pins);
+
 
 /*  
   Plays a fluctuating ambient wash in response to light and temperature sensors.
@@ -68,9 +70,12 @@ const float DIVERGENCE_SCALE = 0.01; // 0.01*1023 = 10.23 Hz max divergence
 const float OFFSET_SCALE = 0.1; // 0.1*1023 = 102.3 Hz max drift
 
 void setup(){
+
+  insta.set_control_pins(control_pins, 1);
+  
   startMozzi();
   Serial.begin(115200);
-  insta.set_to_read();
+  insta.mode(FP_INPUT);
   
   // select base frequencies using mtof
   // C F♯ B♭ E A D the "Promethean chord"
@@ -110,10 +115,12 @@ void loop(){
 
 void updateControl(){
   // read analog inputs
-  int temperature = insta.read()*120; // not calibrated to degrees!
+  int temperature = insta.read(0); // not calibrated to degrees!
   Serial.println(temperature);
-  int light_input = 0;
-
+ // Serial.print("  :  ");
+  int light_input = insta.read(1);
+  //Serial.println(light_input);
+  
   float base_freq_offset = OFFSET_SCALE*temperature;
   float divergence = DIVERGENCE_SCALE*light_input;
   

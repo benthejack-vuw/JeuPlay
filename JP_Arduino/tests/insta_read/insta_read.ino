@@ -5,7 +5,7 @@ InstaByte i(pins);
 
 void setup() {
   Serial.begin(115200);
-  i.set_to_read();
+  i.mode(FP_INPUT);
 }
 
 void loop() {
