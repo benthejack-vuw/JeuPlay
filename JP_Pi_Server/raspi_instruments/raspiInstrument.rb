@@ -44,7 +44,7 @@ class RaspiInstrument
 	end
 
 	def jp_data args
-		play
+		play args
 	end
 
 	def play args
