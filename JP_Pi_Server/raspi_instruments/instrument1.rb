@@ -38,6 +38,7 @@ fork do
       a.run
     rescue SignalException
       a.shutdown
+      exit
     end
 end
 
