@@ -12,7 +12,7 @@ class Instrument
       @pipe.write @samples[i] if(play_list[i] && l[@beat] == '1')
     end
 
-    @beat = (@beat+1) % @loop.length
+    @beat = (@beat+1) % @loops.length
   end
 
 end
