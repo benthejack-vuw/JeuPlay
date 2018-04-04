@@ -9,7 +9,7 @@ class Instrument
 
   def run play_list
     @loops.each_with_index do |l, i|
-      @pipe.write @samples[i] if(play_list[i] && l[@beat] == '1')
+      @pipe.write @samples[i] if(play_list[i] && l[@beats[i]] == '1')
       @beats[i] = (@beats[i]+1) % @loops[i].length
     end
 
