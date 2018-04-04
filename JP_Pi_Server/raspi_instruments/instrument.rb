@@ -20,7 +20,7 @@ class Instrument < RaspiInstrument
   def play args
 
     p args
-    play_list = @controls args
+    play_list = @controls(args)
 
     @player.run play_list
   end
