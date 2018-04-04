@@ -1,9 +1,9 @@
 class Player
 
-  def initialize sample_loops, samples, pipe
+  def initialize sample_loops, samples, pipes
     @loops   = sample_loops
     @samples = samples
-    @pipe   = pipe
+    @pipes   = pipes
     @beats = Array.new(@loops.length, 0)
   end
 
