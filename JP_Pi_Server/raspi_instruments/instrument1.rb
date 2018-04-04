@@ -32,7 +32,11 @@ end
 
 fork do
     a = Aplay.new
-    a.run
+    begin
+      a.run
+    rescue SignalException
+      a.shutdown
+    end
 end
 
 Instrument1.new

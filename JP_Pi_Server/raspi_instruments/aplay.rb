@@ -27,6 +27,7 @@ class Aplay
   end
 
   def shutdown
+    @running = false
     @ip.close
   end
 
