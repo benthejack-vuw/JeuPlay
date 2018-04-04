@@ -4,7 +4,7 @@ class Instrument
     @loops   = sample_loops
     @samples = samples
     @pipe   = pipe
-    @beats = Array.new(0, @loops.length)
+    @beats = Array.new(@loops.length, 0)
   end
 
   def run play_list
