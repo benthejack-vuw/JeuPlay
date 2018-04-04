@@ -17,8 +17,9 @@ class TimingServer
 
   def run_loop
     while true
+      start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       @shouter.send_message Config::BANG
-      sleep(@delay)
+      sleep(@delay-(Process.clock_gettime(Process::CLOCK_MONOTONIC)-start))
     end
   end
 
