@@ -16,6 +16,7 @@ public:
   void mode(const uint8_t &mode, bool skip_set = false);
   bool read();
   void write(bool value);
+  uint8_t shift();
 
 private:
   uint8_t _pin;
@@ -25,4 +26,3 @@ private:
 };
 
 #endif
-

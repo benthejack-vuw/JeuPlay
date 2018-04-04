@@ -11,7 +11,7 @@ uint8_t BufferMask[8] =
   B01000000,
   B10000000  // maybe signed bit .. unsigned int type preferable….
 };
-  
+
 FastPin::FastPin(uint8_t pin){
   set_pin(pin);
 }
@@ -42,22 +42,27 @@ uint8_t FastPin::pin_mask(){
   return BufferMask[_shift];
 }
 
-void FastPin::mode(const uint8_t &mode, bool skip_set = false){
-    if(_mode != mode){
-      _mode = mode;  
-      if(!skip_set && mode == FP_INPUT){
+void FastPin::mode(const uint8_t &mode, bool force = false){
+    if(force || _mode != mode){
+      _mode = mode;
+      if(mode == FP_INPUT){
         *_mode_register = *_mode_register & (~(pin_mask()));
-      }else if(!skip_set && mode == FP_OUTPUT){
+      }else if(mode == FP_OUTPUT){
         *_mode_register = *_mode_register | pin_mask();
       }
     }
 }
 
 bool FastPin::read(){
-  return (bool)((*_read_register & pin_mask()) >> _shift);
+  mode(FP_INPUT);
+  return (bool)((*_read_register & pin_mask()) > 0);
 }
 
 void FastPin::write(bool value){
-  *_write_register = value ? *_mode_register & (~(pin_mask())) : *_mode_register | pin_mask();
+  mode(FP_OUTPUT);
+  *_write_register = value ? *_write_register | pin_mask() :  *_write_register & (~(pin_mask()));
 }
 
+uint8_t FastPin::shift(){
+  return _shift;
+}

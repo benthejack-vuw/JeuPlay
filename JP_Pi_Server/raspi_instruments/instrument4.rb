@@ -21,8 +21,8 @@ class Instrument1 < RaspiInstrument
   def play args
 
     play_list = [
-      (args[0] == "LEFT"),
-      (args[0] == "RIGHT")
+      (args[0] == "UP"),
+      (args[0] == "DOWN")
     ]
 
     @player.run play_list
