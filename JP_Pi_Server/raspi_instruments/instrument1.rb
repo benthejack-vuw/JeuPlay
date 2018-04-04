@@ -7,7 +7,7 @@ class Instrument1 < RaspiInstrument
 
   def initialize
     super 0
-    @loops  = ["10101010", "11001100", "11101110", "11111111"];
+    @loops  = ["10000000", "10000000", "10000000", "10000000"];
     create_pipe
     connect_to_arduino
     connect_to_timing_server
