@@ -10,7 +10,7 @@ class RaspiInstrument
 		sound_folder = Dir.glob("./sounds/*").sort[instrument_index]
 		clips = Dir.glob(File.join(sound_folder, "*"))
 		@samples = clips.map do |clip|
-		 Dir.glob(File.join(clip, "*.wav"))
+		 Dir.glob(File.join(clip, "*.wav")).sort
 		end
 	end
 
