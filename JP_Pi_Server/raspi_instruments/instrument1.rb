@@ -10,11 +10,11 @@ class Instrument1 < RaspiInstrument
 
     @loops  = ["10101010", "11001100", "11101110", "11111111"];
     @samples= ["./sounds/1_bassline/Bassline_1.wav", "./sounds/1_bassline/Bassline_2.wav", "./sounds/1_bassline/Bassline_3.wav", "./sounds/1_bassline/Bassline_4.wav"];
-    @player = Instrument.new @loops, @samples
-
     create_pipe
     connect_to_arduino
     connect_to_timing_server
+    @player = Instrument.new @loops, @samples, @pipe
+
     run
   end
 
