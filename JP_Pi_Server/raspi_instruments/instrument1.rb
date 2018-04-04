@@ -7,9 +7,7 @@ class Instrument1 < RaspiInstrument
 
   def initialize
     super 0
-
     @loops  = ["10101010", "11001100", "11101110", "11111111"];
-    @samples= ["./sounds/1_bassline/Bassline_1.wav", "./sounds/1_bassline/Bassline_2.wav", "./sounds/1_bassline/Bassline_3.wav", "./sounds/1_bassline/Bassline_4.wav"];
     create_pipe
     connect_to_arduino
     connect_to_timing_server
