@@ -1,14 +1,10 @@
 require_relative 'pipe'
 
-class Aplay
+class Aplay file_name
 
   def initialize
     @running = true
-    @ip = Pipe.new(pipe_file).tap{|p| p.open_for_input }
-  end
-
-  def pipe_file
-    "Aplay_IN"
+    @ip = Pipe.new(file_name).tap{|p| p.open_for_input }
   end
 
   def pipe

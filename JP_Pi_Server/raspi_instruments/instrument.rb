@@ -9,10 +9,9 @@ class Instrument < RaspiInstrument
     super index
     @loops  = loops;
     @controls = controls
-    create_pipe
     connect_to_arduino
     connect_to_timing_server
-    @player = Player.new @loops, @samples, @pipe
+    @player = Player.new @loops, @samples, @pipes
 
     run
   end
@@ -22,14 +21,4 @@ class Instrument < RaspiInstrument
     @player.run play_list
   end
 
-end
-
-fork do
-    a = Aplay.new
-    begin
-      a.run
-    rescue SignalException
-      a.shutdown
-      exit
-    end
 end

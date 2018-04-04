@@ -12,7 +12,7 @@ class Player
       if(play_list[i] && l[@beats[i]] == '1')
         sample = @samples[i][@beats[i] % @samples[i].length]
         p sample
-        @pipe.write sample
+        @pipes[i].write sample
       end
       @beats[i] = (@beats[i]+1) % @loops[i].length
     end

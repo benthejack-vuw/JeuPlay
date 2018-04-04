@@ -12,6 +12,23 @@ class RaspiInstrument
 		@samples = clips.map do |clip|
 		 Dir.glob(File.join(clip, "*.wav")).sort
 		end
+
+		@pipes = clips.map do |clip|
+			pipe_name = "Aplay_IN_#{clip}"
+			Pipe.new(pipe_name).tap{|p| p.open_for_output }
+
+			fork do
+			    a = Aplay.new pipe_name
+			    begin
+			      a.run
+			    rescue SignalException
+			      a.shutdown
+			      exit
+			    end
+			end
+
+		end
+
 	end
 
 	def connect_to_arduino
@@ -28,10 +45,6 @@ class RaspiInstrument
 			@channel_sub.listen
 		end #this runs as a loop, if the block returns false (it does) this will run forever
 	end
-
-	def create_pipe
-    @pipe = Pipe.new("Aplay_IN").tap{|p| p.open_for_output }
-  end
 
 	def println args
 		puts args
