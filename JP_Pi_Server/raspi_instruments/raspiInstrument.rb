@@ -16,7 +16,7 @@ class RaspiInstrument
 		@pipes = clips.map do |clip|
 			suffix = clip.split("/").last
 			pipe_name = "Aplay_IN_#{suffix}"
-			Pipe.new(pipe_name).tap{|p| p.open_for_output }
+			pipe_out = Pipe.new(pipe_name).tap{|p| p.open_for_output }
 
 			fork do
 			    a = Aplay.new pipe_name
@@ -28,7 +28,9 @@ class RaspiInstrument
 			    end
 			end
 
+			pipe_out
 		end
+
 
 	end
 
