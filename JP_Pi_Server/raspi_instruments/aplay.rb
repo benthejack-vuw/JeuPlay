@@ -20,7 +20,7 @@ class Aplay
 
     while @running
      x = @ip.read
-     Thread.new { %x{aplay --device plughw:CARD=Device,DEV=0 #{x}} } if x
+     Thread.new { %x{aplay #{x}} } if x
      @running = false if x == "stop"
     end
     shutdown

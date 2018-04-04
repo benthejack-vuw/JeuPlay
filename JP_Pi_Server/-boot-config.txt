@@ -1,0 +1,2 @@
+dtoverlay=i2s-mmap
+
