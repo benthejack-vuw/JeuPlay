@@ -7,7 +7,6 @@ require_relative 'channelSubscriber'
 class RaspiInstrument
 
 	def initialize instrument_index
-		@data = Config.instruments[instrument_index]
 	end
 
 	def connect_to_arduino
@@ -45,8 +44,7 @@ class RaspiInstrument
 	end
 
 	def jp_data args
-		play args if @data.rhythm[@beat] == '1'
-		@beat = (@beat+1) % @data.rhythm.length
+		play
 	end
 
 	def play args
