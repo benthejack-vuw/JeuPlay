@@ -18,10 +18,7 @@ class Instrument < RaspiInstrument
   end
 
   def play args
-
-    p args
-    play_list = @controls(args)
-
+    play_list = @controls.call(args)
     @player.run play_list
   end
 
