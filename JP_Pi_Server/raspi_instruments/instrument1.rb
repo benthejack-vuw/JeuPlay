@@ -18,6 +18,8 @@ class Instrument1 < RaspiInstrument
 
   def play args
 
+    p args
+
     play_list = [
       (args[0] == "LEFT" && args[1] == "RIGHT"),
       (args[0] == "RIGHT" && args[1] == "LEFT"),
