@@ -7,8 +7,11 @@ require_relative 'channelSubscriber'
 class RaspiInstrument
 
 	def initialize instrument_index
-		@sound_folder = Dir.glob("./sounds/*").sort[instrument_index]
-		@samples = Dir.glob(File.join(@sound_folder, "*.wav"))
+		sound_folder = Dir.glob("./sounds/*").sort[instrument_index]
+		clips = Dir.glob(File.join(sound_folder, "*"))
+		@samples = clips.map do |clip|
+		 Dir.glob(File.join(clip, "*.wav"))
+		end
 	end
 
 	def connect_to_arduino
