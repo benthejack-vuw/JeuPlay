@@ -26,14 +26,14 @@ void JpJoystick::debug_buttons(){
 }
 
 StickDirection JpJoystick::stick_direction(){
-  
+
   JoystickMap buttons = JoystickMap(_top_pin, _right_pin, _bottom_pin, _left_pin);
-  
+
   //maybe do as callback with const argument so they cant change the direction?
   for(int i = 0; i < 9; ++i){
     if(_directions[i]->is_triggered(buttons))
       return *_directions[i];
   }
-  
+
   return *_directions[8];
 }
