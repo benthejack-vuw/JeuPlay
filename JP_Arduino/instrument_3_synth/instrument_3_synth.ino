@@ -3,9 +3,7 @@ uint8_t pins[8] = {2,3,4,5,6,7,8,10};
 uint8_t control_pins[1] = {14};
 InstaByte insta(pins);
 
-long last_time = 0;
-int last_temp = 0;
-int last_light = 0;
+
 /*  
   Plays a fluctuating ambient wash in response to light and temperature sensors.
 
@@ -119,20 +117,8 @@ void loop(){
 void updateControl(){
   // read analog inputs
   insta.mode(FP_INPUT);
-
   int temperature = insta.read(0)*100; // not calibrated to degrees!
   int light_input = insta.read(1)*100;
-
-  if(temperature == last_temp && light_input == last_light){
-    if(mozziMicros() - last_time > 20000)
-       pause = true;
-    }
-  }else{
-    last_time = mozziMicros();
-    last_temp = temperature;
-    last_light = light_input;
-    pause = false;
-  }
   
   float base_freq_offset = OFFSET_SCALE*temperature;
   float divergence = DIVERGENCE_SCALE*light_input;
@@ -190,9 +176,6 @@ int updateAudio(){
     aCos4.next() + aCos4b.next() +
     aCos5.next() + aCos5b.next() +
     aCos6.next() + aCos6b.next();
-  if(!pause){
-    return asig >> 3;
-  }else{
-    return 0;
-  }
+
+  return asig >> 3;
 }

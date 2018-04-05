@@ -1,3 +1,5 @@
+INSTRUMENT = 5
+
 require_relative "instrument"
 
 controls = lambda do |args|
@@ -15,4 +17,4 @@ end
 
 loops = ["11111111", "11111111", "11111111", "11111111", "11111111", "11111111", "11111111", "11111111"];
 
-Instrument.new 4, loops, controls
+Instrument.new (INSTRUMENT-1), loops, controls

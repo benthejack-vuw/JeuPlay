@@ -7,6 +7,6 @@ controls = lambda do |args|
   ]
 end
 
-loops = ["10001000", "10001000"]
+loops = ["11111111111111111111111111111111", "11111111111111111111111111111111"]
 
 Instrument.new 3, loops, controls
