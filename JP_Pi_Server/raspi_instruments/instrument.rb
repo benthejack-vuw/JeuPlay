@@ -1,7 +1,5 @@
 require_relative "raspiInstrument"
 require_relative "player"
-require_relative "aplay"
-
 
 class Instrument < RaspiInstrument
 
@@ -11,8 +9,7 @@ class Instrument < RaspiInstrument
     @controls = controls
     connect_to_arduino
     connect_to_timing_server
-    @player = Player.new @loops, @samples, @pipes
-
+    @player = Player.new @loops, @samples
     run
   end
 

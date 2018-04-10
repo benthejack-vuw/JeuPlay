@@ -1,7 +1,7 @@
 class ChannelSubscriber
 
   DELEGATE_ERROR = "ChannelSubscriber's delegate must implement a timed_event method"
-  LOOP_DELAY = 1.0/500.0 #50th of a second
+  LOOP_DELAY = 1.0/100.0 #100th of a second
 
   def initialize delegate
     @delegate = delegate
@@ -13,9 +13,7 @@ class ChannelSubscriber
 		begin
       @socket = UDPSocket.new
       @socket.bind('0.0.0.0', @port)
-      puts "stuff & #{@socket.addr}"
 		end
-		puts "listening to #{Config::SERVER[:ip]} on port #{Config::SERVER[:port]}"
   end
 
   def listen

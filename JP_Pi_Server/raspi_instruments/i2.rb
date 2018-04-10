@@ -2,8 +2,8 @@ require_relative "instrument"
 
 controls = lambda do |args|
   [
-    (args[0] == "LEFT" && args[1] == "RIGHT"),
-    (args[0] == "RIGHT" && args[1] == "LEFT")
+    (args[0] == "DOWN"),
+    (args[0] == "LEFT" || args[0] == "DOWN_LEFT")
   ]
 end
 

@@ -1,16 +1,11 @@
-require_relative "aplay"
 require_relative "raspiInstrument"
 
-class TestInstrument < RaspiInstrument
+class TestInstrument < Instrument
 
   def initialize num
     super num
-    @count = 0
-    @beat = 0;
     connect_to_timing_server
-    create_pipe
     run
-
   end
 
   def run
@@ -21,23 +16,31 @@ class TestInstrument < RaspiInstrument
   end
 
   def timed_event
-    play(["test", "data"]) if @data.rhythm[@beat] == '1'
-		@beat = (@beat+1) % @data.rhythm.length
+    play(["test", "data"])
   end
 
   def play args
-    @pipe.write "./sounds/#{@data.sound}"
+    p args
   end
 
 end
 
+
+controls = lambda do |args|
+  [
+    (args[0] == "UP" || args[0] == "UP_RIGHT" || args[0] == "UP_LEFT"),
+    (args[0] == "DOWN" || args[0] == "DOWN_RIGHT" || args[0] == "DOWN_LEFT"),
+    (args[1] == "UP" || args[1] == "UP_RIGHT" || args[1] == "UP_LEFT"),
+    (args[1] == "DOWN" || args[1] == "DOWN_RIGHT" || args[1] == "DOWN_LEFT"),
+    (args[2] == "UP" || args[2] == "UP_RIGHT" || args[2] == "UP_LEFT"),
+    (args[2] == "DOWN" || args[2] == "DOWN_RIGHT" || args[2] == "DOWN_LEFT"),
+    (args[3] == "UP" || args[3] == "UP_RIGHT" || args[3] == "UP_LEFT"),
+    (args[3] == "DOWN" || args[3] == "DOWN_RIGHT" || args[3] == "DOWN_LEFT")
+  ]
+end
+
+
+
 if __FILE__ == $0
-
-  fork do
-      a = Aplay.new
-      a.run
-  end
-
 	instrument = TestInstrument.new ARGV[0].to_i
-
 end

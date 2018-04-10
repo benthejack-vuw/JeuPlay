@@ -1,0 +1,248 @@
+
+lib/rubytree.rb,0
+
+lib/tree/binarytree.rb,795
+module Tree::Tree43,1906
+  class BinaryTreeNode::Tree::BinaryTreeNode52,2215
+    def left_child::Tree::BinaryTreeNode#left_child62,2498
+    def right_child::Tree::BinaryTreeNode#right_child74,2889
+    def is_left_child?::Tree::BinaryTreeNode#is_left_child?83,3165
+    def is_right_child?::Tree::BinaryTreeNode#is_right_child?93,3496
+    def add::Tree::BinaryTreeNode#add110,4153
+    def add_from_hash::Tree::BinaryTreeNode#add_from_hash143,5539
+    def inordered_each::Tree::BinaryTreeNode#inordered_each160,6096
+    def set_child_at::Tree::BinaryTreeNode#set_child_at191,7032
+    def left_child=::Tree::BinaryTreeNode#left_child=210,7700
+    def right_child=::Tree::BinaryTreeNode#right_child=222,8069
+    def swap_children::Tree::BinaryTreeNode#swap_children227,8215
+
+lib/tree/tree_deps.rb,0
+
+lib/tree/utils/camel_case_method_handler.rb,324
+module Tree::Tree41,1848
+  module CamelCaseMethodHandler::Tree::CamelCaseMethodHandler44,2004
+    def self.included::Tree::CamelCaseMethodHandler.included45,2038
+      def method_missing::Tree::CamelCaseMethodHandler#method_missing49,2186
+      def to_snake_case::Tree::CamelCaseMethodHandler#to_snake_case66,2798
+
+lib/tree/utils/hash_converter.rb,265
+module Tree::Tree40,1916
+  def self.included::Tree.included42,1953
+  module ClassMethods::Tree::ClassMethods49,2177
+    def from_hash::Tree::ClassMethods#from_hash86,3823
+    def add_from_hash::Tree#add_from_hash129,5519
+    def to_h::Tree#to_h151,6367
+
+lib/tree/utils/json_converter.rb,258
+module Tree::Tree42,1925
+  def self.included::Tree.included44,1962
+  def as_json::Tree#as_json61,2413
+  def to_json::Tree#to_json89,3121
+  module ClassMethods::Tree::ClassMethods94,3271
+    def json_create::Tree::ClassMethods#json_create113,3986
+
+lib/tree/utils/metrics_methods.rb,718
+module Tree::Tree41,1833
+  module TreeMetricsHandler::Tree::TreeMetricsHandler43,1918
+    def self.included::Tree::TreeMetricsHandler.included44,1948
+      def size::Tree::TreeMetricsHandler#size56,2317
+      def length::Tree::TreeMetricsHandler#length67,2661
+      def node_height::Tree::TreeMetricsHandler#node_height80,3078
+      def node_depth::Tree::TreeMetricsHandler#node_depth96,3689
+      def level::Tree::TreeMetricsHandler#level105,3875
+      def depth::Tree::TreeMetricsHandler#depth124,4560
+      def breadth::Tree::TreeMetricsHandler#breadth140,5197
+      def in_degree::Tree::TreeMetricsHandler#in_degree154,5660
+      def out_degree::Tree::TreeMetricsHandler#out_degree165,5973
+
+lib/tree/utils/tree_merge_handler.rb,214
+module Tree::Tree40,1769
+  def merge::Tree#merge57,2500
+  def merge!::Tree#merge!72,3134
+  def check_merge_prerequisites::Tree#check_merge_prerequisites85,3441
+  def merge_trees::Tree#merge_trees102,4086
+
+lib/tree/utils/utils.rb,27
+module Tree::Tree39,1838
+
+lib/tree/version.rb,27
+module Tree::Tree38,1723
+
+lib/tree.rb,2947
+module Tree::Tree48,2158
+  class TreeNode::Tree::TreeNode85,3731
+    attr_reader   :name::Tree::TreeNode#name113,4634
+    attr_accessor :content::Tree::TreeNode#content120,4833
+    attr_reader   :parent::Tree::TreeNode#parent124,4949
+    def root::Tree::TreeNode#root131,5161
+    def is_root?::Tree::TreeNode#is_root?142,5467
+    def has_content?::Tree::TreeNode#has_content?150,5650
+    def is_leaf?::Tree::TreeNode#is_leaf?161,5904
+    def parentage::Tree::TreeNode#parentage173,6279
+    def has_children?::Tree::TreeNode#has_children?191,6705
+    def initialize::Tree::TreeNode#Tree::TreeNode.new214,7531
+    def detached_copy::Tree::TreeNode#detached_copy232,8148
+    def detached_subtree_copy::Tree::TreeNode#detached_subtree_copy242,8434
+    alias :dup::Tree::TreeNode#dup251,8695
+    def marshal_dump::Tree::TreeNode#marshal_dump256,8873
+    def create_dump_rep::Tree::TreeNode#create_dump_rep262,9041
+    def marshal_load::Tree::TreeNode#marshal_load277,9579
+    def to_s::Tree::TreeNode#to_s302,10363
+    def <<::Tree::TreeNode#<<325,11134
+    def add::Tree::TreeNode#add360,12662
+    def insertion_range::Tree::TreeNode#insertion_range380,13624
+    def rename::Tree::TreeNode#rename394,13993
+    def rename_child::Tree::TreeNode#rename_child413,14502
+    def name=::Tree::TreeNode#name=426,14986
+    def replace!::Tree::TreeNode#replace!436,15333
+    def replace_with::Tree::TreeNode#replace_with450,15706
+    def remove!::Tree::TreeNode#remove!468,16438
+    def parent=::Tree::TreeNode#parent=483,16841
+    def remove_from_parent!::Tree::TreeNode#remove_from_parent!496,17234
+    def remove_all!::Tree::TreeNode#remove_all!507,17606
+    def set_as_root!::Tree::TreeNode#set_as_root!518,17835
+    def freeze_tree!::Tree::TreeNode#freeze_tree!528,18161
+    def []::Tree::TreeNode#[]568,19679
+    def each::Tree::TreeNode#each593,20646
+    def preordered_each::Tree::TreeNode#preordered_each621,21606
+    def postordered_each::Tree::TreeNode#postordered_each633,22018
+    def breadth_each::Tree::TreeNode#breadth_each669,23463
+    def children::Tree::TreeNode#children695,24416
+    def each_leaf::Tree::TreeNode#each_leaf716,25037
+    def first_child::Tree::TreeNode#first_child733,25459
+    def last_child::Tree::TreeNode#last_child741,25670
+    def first_sibling::Tree::TreeNode#first_sibling757,26117
+    def is_first_sibling?::Tree::TreeNode#is_first_sibling?767,26391
+    def last_sibling::Tree::TreeNode#last_sibling781,26807
+    def is_last_sibling?::Tree::TreeNode#is_last_sibling?791,27077
+    def siblings::Tree::TreeNode#siblings807,27630
+    def is_only_child?::Tree::TreeNode#is_only_child?826,28182
+    def next_sibling::Tree::TreeNode#next_sibling839,28585
+    def previous_sibling::Tree::TreeNode#previous_sibling855,29059
+    def <=>::Tree::TreeNode#<=>871,29570
+    def print_tree::Tree::TreeNode#print_tree881,29950
+
+test/run_test.rb,0
+
+test/test_binarytree.rb,1361
+module TestTree::TestTree39,1717
+  class TestBinaryTreeNode::TestTree::TestBinaryTreeNode41,1776
+    def setup::TestTree::TestBinaryTreeNode#setup44,1868
+    def teardown::TestTree::TestBinaryTreeNode#teardown52,2171
+    def test_initialize::TestTree::TestBinaryTreeNode#test_initialize59,2330
+    def test_from_hash::TestTree::TestBinaryTreeNode#test_from_hash66,2692
+    def test_add_from_hash::TestTree::TestBinaryTreeNode#test_add_from_hash101,4024
+    def test_add::TestTree::TestBinaryTreeNode#test_add134,5134
+    def test_inordered_each::TestTree::TestBinaryTreeNode#test_inordered_each157,6048
+    def test_left_child::TestTree::TestBinaryTreeNode#test_left_child201,7516
+    def test_right_child::TestTree::TestBinaryTreeNode#test_right_child209,7829
+    def test_left_child_equals::TestTree::TestBinaryTreeNode#test_left_child_equals217,8142
+    def test_right_child_equals::TestTree::TestBinaryTreeNode#test_right_child_equals236,9132
+    def test_is_left_child_eh::TestTree::TestBinaryTreeNode#test_is_left_child_eh256,10249
+    def test_is_right_child_eh::TestTree::TestBinaryTreeNode#test_is_right_child_eh271,10788
+    def test_swap_children::TestTree::TestBinaryTreeNode#test_swap_children285,11334
+    def test_old_camelCase_method_names::TestTree::TestBinaryTreeNode#test_old_camelCase_method_names303,12217
+
+test/test_rubytree_require.rb,203
+module TestTree::TestTree38,1678
+  class TestRequireRubytree::TestTree::TestRequireRubytree41,1759
+    def test_create_a_simple_node::TestTree::TestRequireRubytree#test_create_a_simple_node44,1884
+
+test/test_subclassed_node.rb,389
+module TestTree::TestTree39,1688
+  class TestSubclassedTreeNode::TestTree::TestSubclassedTreeNode42,1741
+    class MyNode::TestTree::TestSubclassedTreeNode::MyNode45,1868
+      def my_dummy_method::TestTree::TestSubclassedTreeNode::MyNode#my_dummy_method47,1967
+    def test_subclassed_camelcase_methods::TestTree::TestSubclassedTreeNode#test_subclassed_camelcase_methods52,2026
+
+test/test_thread_and_fiber.rb,422
+module TestTree::TestTree39,1695
+  class TestFiberAndThreadOnNode::TestTree::TestFiberAndThreadOnNode41,1747
+    def create_long_depth_trees::TestTree::TestFiberAndThreadOnNode#create_long_depth_trees44,1843
+    def test_fiber_for_recursion::TestTree::TestFiberAndThreadOnNode#test_fiber_for_recursion59,2260
+    def test_thread_for_recursion::TestTree::TestFiberAndThreadOnNode#test_thread_for_recursion73,2807
+
+test/test_tree.rb,6492
+module TestTree::TestTree39,1725
+  class TestTreeNode::TestTree::TestTreeNode41,1777
+    def setup::TestTree::TestTreeNode#setup65,2610
+    def setup_test_tree::TestTree::TestTreeNode#setup_test_tree77,3030
+    def teardown::TestTree::TestTreeNode#teardown84,3180
+    def test_has_version_number::TestTree::TestTreeNode#test_has_version_number89,3272
+    def test_root_setup::TestTree::TestTreeNode#test_root_setup94,3423
+    def test_root::TestTree::TestTreeNode#test_root111,4473
+    def test_from_hash::TestTree::TestTreeNode#test_from_hash123,4974
+    def test_from_hash_with_nils::TestTree::TestTreeNode#test_from_hash_with_nils175,6546
+    def test_add_from_hash::TestTree::TestTreeNode#test_add_from_hash221,7902
+    def test_to_h::TestTree::TestTreeNode#test_to_h253,8917
+    def test_to_h_from_hash_symmetry::TestTree::TestTreeNode#test_to_h_from_hash_symmetry279,9496
+    def test_has_content_eh::TestTree::TestTreeNode#test_has_content_eh295,9894
+    def test_length_is_size::TestTree::TestTreeNode#test_length_is_size306,10352
+    def test_spaceship::TestTree::TestTreeNode#test_spaceship312,10542
+    def test_is_comparable::TestTree::TestTreeNode#test_is_comparable338,11325
+    def test_to_s::TestTree::TestTreeNode#test_to_s356,12107
+    def test_first_sibling::TestTree::TestTreeNode#test_first_sibling389,13825
+    def test_is_first_sibling_eh::TestTree::TestTreeNode#test_is_first_sibling_eh402,14553
+    def test_is_last_sibling_eh::TestTree::TestTreeNode#test_is_last_sibling_eh413,15036
+    def test_last_sibling::TestTree::TestTreeNode#test_last_sibling424,15504
+    def test_siblings::TestTree::TestTreeNode#test_siblings436,16158
+    def test_is_only_child_eh::TestTree::TestTreeNode#test_is_only_child_eh464,17081
+    def test_next_sibling::TestTree::TestTreeNode#test_next_sibling475,17517
+    def test_previous_sibling::TestTree::TestTreeNode#test_previous_sibling486,18017
+    def test_add::TestTree::TestTreeNode#test_add497,18546
+    def test_add_duplicate::TestTree::TestTreeNode#test_add_duplicate518,19228
+    def test_add_at_specific_position::TestTree::TestTreeNode#test_add_at_specific_position559,20656
+    def test_replace_bang::TestTree::TestTreeNode#test_replace_bang623,23711
+    def test_replace_with::TestTree::TestTreeNode#test_replace_with647,24756
+    def test_remove_bang::TestTree::TestTreeNode#test_remove_bang665,25481
+    def test_remove_all_bang::TestTree::TestTreeNode#test_remove_all_bang697,26444
+    def test_remove_from_parent_bang::TestTree::TestTreeNode#test_remove_from_parent_bang707,26750
+    def test_children::TestTree::TestTreeNode#test_children726,27465
+    def test_first_child::TestTree::TestTreeNode#test_first_child762,29054
+    def test_last_child::TestTree::TestTreeNode#test_last_child771,29382
+    def test_find::TestTree::TestTreeNode#test_find780,29698
+    def test_parentage::TestTree::TestTreeNode#test_parentage795,30293
+    def test_each::TestTree::TestTreeNode#test_each804,30625
+    def test_each_leaf::TestTree::TestTreeNode#test_each_leaf823,31309
+    def test_parent::TestTree::TestTreeNode#test_parent850,32504
+    def test_indexed_access::TestTree::TestTreeNode#test_indexed_access861,32923
+    def test_print_tree::TestTree::TestTreeNode#test_print_tree872,33296
+    def test_marshal_dump::TestTree::TestTreeNode#test_marshal_dump879,33456
+    alias test_marshal_load::TestTree::TestTreeNode#test_marshal_load921,35578
+    def test_collect::TestTree::TestTreeNode#test_collect924,35699
+    def test_freeze_tree_bang::TestTree::TestTreeNode#test_freeze_tree_bang934,35965
+    def test_content::TestTree::TestTreeNode#test_content948,36487
+    def test_depth::TestTree::TestTreeNode#test_depth956,36878
+    def do_deprecated_depth::TestTree::TestTreeNode#do_deprecated_depth967,37251
+    def test_node_height::TestTree::TestTreeNode#test_node_height985,37819
+    def test_node_depth::TestTree::TestTreeNode#test_node_depth1010,39028
+    def test_level::TestTree::TestTreeNode#test_level1023,39465
+    def test_breadth::TestTree::TestTreeNode#test_breadth1038,40008
+    def test_breadth_each::TestTree::TestTreeNode#test_breadth_each1057,40655
+    def test_preordered_each::TestTree::TestTreeNode#test_preordered_each1106,42240
+    def test_postordered_each::TestTree::TestTreeNode#test_postordered_each1145,43494
+    def test_detached_copy::TestTree::TestTreeNode#test_detached_copy1194,45031
+    def test_detached_subtree_copy::TestTree::TestTreeNode#test_detached_subtree_copy1211,45759
+    def test_has_children_eh::TestTree::TestTreeNode#test_has_children_eh1245,48011
+    def test_is_leaf_eh::TestTree::TestTreeNode#test_is_leaf_eh1251,48173
+    def test_is_root_eh::TestTree::TestTreeNode#test_is_root_eh1258,48379
+    def test_content_equals::TestTree::TestTreeNode#test_content_equals1264,48542
+    def test_size::TestTree::TestTreeNode#test_size1272,48807
+    def test_lt2::TestTree::TestTreeNode#test_lt21281,49071
+    def test_index::TestTree::TestTreeNode#test_index1292,49563
+    def test_in_degree::TestTree::TestTreeNode#test_in_degree1313,50659
+    def test_out_degree::TestTree::TestTreeNode#test_out_degree1324,51126
+    def test_json_serialization::TestTree::TestTreeNode#test_json_serialization1335,51613
+    def test_json_deserialization::TestTree::TestTreeNode#test_json_deserialization1359,52413
+    def test_json_roundtrip::TestTree::TestTreeNode#test_json_roundtrip1387,53599
+    def test_old_camelCase_method_names::TestTree::TestTreeNode#test_old_camelCase_method_names1403,54340
+    def test_integer_node_names::TestTree::TestTreeNode#test_integer_node_names1434,55408
+    def test_add_node_to_self_as_child::TestTree::TestTreeNode#test_add_node_to_self_as_child1465,56638
+    def test_single_node_becomes_leaf::TestTree::TestTreeNode#test_single_node_becomes_leaf1481,57151
+    def test_unique_node_names::TestTree::TestTreeNode#test_unique_node_names1493,57572
+    def setup_other_test_tree::TestTree::TestTreeNode#setup_other_test_tree1507,57927
+    def test_merge::TestTree::TestTreeNode#test_merge1535,58916
+    def test_merge_bang::TestTree::TestTreeNode#test_merge_bang1564,60354
+    def test_name_accessor::TestTree::TestTreeNode#test_name_accessor1589,61441
+    def test_rename::TestTree::TestTreeNode#test_rename1597,61657
+    def test_rename_child::TestTree::TestTreeNode#test_rename_child1608,62028

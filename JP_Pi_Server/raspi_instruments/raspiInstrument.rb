@@ -8,30 +8,10 @@ class RaspiInstrument
 
 	def initialize instrument_index
 		sound_folder = Dir.glob("./sounds/*").sort[instrument_index]
-		clips = Dir.glob(File.join(sound_folder, "*"))
+		clips = Dir.glob(File.join(sound_folder, "*")).sort
 		@samples = clips.map do |clip|
 		 Dir.glob(File.join(clip, "*.wav")).sort
 		end
-
-		@pipes = clips.map do |clip|
-			suffix = clip.split("/").last
-			pipe_name = "Aplay_IN_#{suffix}"
-			pipe_out = Pipe.new(pipe_name).tap{|p| p.open_for_output }
-
-			fork do
-			    a = Aplay.new pipe_name
-			    begin
-			      a.run
-			    rescue SignalException
-			      a.shutdown
-			      exit
-			    end
-			end
-
-			pipe_out
-		end
-
-
 	end
 
 	def connect_to_arduino

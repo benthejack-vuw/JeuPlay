@@ -1,0 +1,144 @@
+
+
+
+
+Fri Nov 10 16:13:26 NZDT 2017
+
+Starting "/usr/autodesk/maya2017/bin/maya"
+
+VP2 Error : Failed to initialize graphics device.
+
+API error detected in /local/S/Maya_2017_DI/src/Maya/src/Components/BifrostTmp/plugins/mayavis/BFPlugin.cpp at line 117
+: (kFailure): Unexpected Internal Failure
+pymel.core : INFO : Updating pymel with pre-loaded plugins: invertShape, mayaHIK, curveWarp, CloudImportExport, tiffFloatReader, MASH, poseInterpolator, bifrostvisplugin, hairPhysicalShader, ikSpringSolver, ik2Bsolver, xgenToolkit, AbcExport, retargeterNodes, OpenEXRLoader, lookdevKit, Unfold3D, Type
+Failed to register registerFragments.00:00:00   511MB WARNING | [mtoa] [renderSetup_shaders] [node applyAbsFloatOverride] Assigning temporary node id 1138176 to associated Maya type name applyAbsFloatOverride.
+00:00:00   511MB WARNING | [mtoa] [renderSetup_shaders] [node applyAbs2FloatsOverride] Assigning temporary node id 1138177 to associated Maya type name applyAbs2FloatsOverride.
+00:00:00   511MB WARNING | [mtoa] [renderSetup_shaders] [node applyAbs3FloatsOverride] Assigning temporary node id 1138178 to associated Maya type name applyAbs3FloatsOverride.
+libai.so already loaded
+
+Maya 2017 importing module pymel 1.0.9 (/usr/autodesk/maya2017/lib/python2.7/site-packages/pymel/__init__.py)
+initialising
+File read in  0.15 seconds.
+Result: /home/render/Desktop/rubiks/scenes/1__4107.mb
+Warning: int $interactive = 1; // for Flag -interactive
+Warning: "/usr/tmp/ASTMPIf9XX9.mel" line 9.21 : Redeclaration of variable "$interactive" shadows previous declaration at line 7. Previous value will be overwritten by explicit initializer.
+initialising
+Stack trace:
+  raise
+  /opt/solidangle/mtoa/2017/plug-ins/../bin/libai.so(+0x7d2512) [0x2ae5d8e72512]
+  /opt/solidangle/mtoa/2017/plug-ins/mtoa.so(+0xaf391) [0x2ae5d832e391]
+  THcommandObject::doIt(TargList&)
+  TmetaCommand::doCommand(TargList&)
+  TpythonInterpreter::dispatchMayaCommand(TmetaCommand&, _object*, _object*)
+  TpythonInterpreter::genericDispatchFunction(_object*, _object*, _object*)
+  PyObject_Call
+  PyEval_CallObjectWithKeywords
+  /usr/autodesk/maya2017/lib/libpython2.7.so.1.0(+0xf2f41) [0x2ae56afabf41]
+  PyEval_EvalFrameEx
+  PyEval_EvalCodeEx
+  /usr/autodesk/maya2017/lib/libpython2.7.so.1.0(+0x793f8) [0x2ae56af323f8]
+  PyObject_Call
+  PyEval_EvalFrameEx
+  PyEval_EvalFrameEx
+  PyEval_EvalCodeEx
+  PyEval_EvalCode
+  TpythonInterpreter::executeCommand(Tstring const&, bool, bool, TinterpreterResult*)
+  TpythonCmd::doCommand(TargList&)
+  Mel_Command_Dispatch(SphNode*)
+  node_exec
+  f_function_entry_node
+  node_exec
+  sophia_call_executable
+  SophiaExecutable::evaluate(void*)
+  TcommandEngine::executeCommand(SophiaExecutable*, void*)
+  TelfEvalCmd::doCommand(TargList&)
+  Mel_Command_Dispatch(SphNode*)
+  node_exec
+  f_catch
+  fc_if
+  node_exec
+  fc_ifelse
+  node_exec
+  fc_if
+  node_exec
+  fc_if
+  node_exec
+  fc_for
+
+Result: /home/render/Desktop/rubiks/scenes/1__4107.ma
+Fatal Error. Attempting to save in /usr/tmp/render.20171110.1613.ma
+Writing crash report in /usr/tmp/render.20171110.1613.crash
+Segmentation fault (core dumped)
+// Maya exited with status 139
+
+
+
+
+Fri Nov 10 16:14:23 NZDT 2017
+
+Starting "/usr/autodesk/maya2017/bin/maya"
+
+VP2 Error : Failed to initialize graphics device.
+
+API error detected in /local/S/Maya_2017_DI/src/Maya/src/Components/BifrostTmp/plugins/mayavis/BFPlugin.cpp at line 117
+: (kFailure): Unexpected Internal Failure
+pymel.core : INFO : Updating pymel with pre-loaded plugins: invertShape, mayaHIK, curveWarp, CloudImportExport, tiffFloatReader, MASH, poseInterpolator, bifrostvisplugin, hairPhysicalShader, ikSpringSolver, ik2Bsolver, xgenToolkit, AbcExport, retargeterNodes, OpenEXRLoader, lookdevKit, Unfold3D, Type
+Failed to register registerFragments.00:00:00   505MB WARNING | [mtoa] [renderSetup_shaders] [node applyAbsFloatOverride] Assigning temporary node id 1138176 to associated Maya type name applyAbsFloatOverride.
+00:00:00   505MB WARNING | [mtoa] [renderSetup_shaders] [node applyAbs2FloatsOverride] Assigning temporary node id 1138177 to associated Maya type name applyAbs2FloatsOverride.
+00:00:00   505MB WARNING | [mtoa] [renderSetup_shaders] [node applyAbs3FloatsOverride] Assigning temporary node id 1138178 to associated Maya type name applyAbs3FloatsOverride.
+libai.so already loaded
+
+Maya 2017 importing module pymel 1.0.9 (/usr/autodesk/maya2017/lib/python2.7/site-packages/pymel/__init__.py)
+initialising
+File read in  0.15 seconds.
+Result: /home/render/Desktop/rubiks/scenes/1__4107.mb
+Warning: int $interactive = 1; // for Flag -interactive
+Warning: "/usr/tmp/ASTMP5OwR8x.mel" line 9.21 : Redeclaration of variable "$interactive" shadows previous declaration at line 7. Previous value will be overwritten by explicit initializer.
+initialising
+Stack trace:
+  raise
+  /opt/solidangle/mtoa/2017/plug-ins/../bin/libai.so(+0x7d2512) [0x2b9f0bea7512]
+  /opt/solidangle/mtoa/2017/plug-ins/mtoa.so(+0xaf391) [0x2b9f0b363391]
+  THcommandObject::doIt(TargList&)
+  TmetaCommand::doCommand(TargList&)
+  TpythonInterpreter::dispatchMayaCommand(TmetaCommand&, _object*, _object*)
+  TpythonInterpreter::genericDispatchFunction(_object*, _object*, _object*)
+  PyObject_Call
+  PyEval_CallObjectWithKeywords
+  /usr/autodesk/maya2017/lib/libpython2.7.so.1.0(+0xf2f41) [0x2b9e9dfc4f41]
+  PyEval_EvalFrameEx
+  PyEval_EvalCodeEx
+  /usr/autodesk/maya2017/lib/libpython2.7.so.1.0(+0x793f8) [0x2b9e9df4b3f8]
+  PyObject_Call
+  PyEval_EvalFrameEx
+  PyEval_EvalFrameEx
+  PyEval_EvalCodeEx
+  PyEval_EvalCode
+  TpythonInterpreter::executeCommand(Tstring const&, bool, bool, TinterpreterResult*)
+  TpythonCmd::doCommand(TargList&)
+  Mel_Command_Dispatch(SphNode*)
+  node_exec
+  f_function_entry_node
+  node_exec
+  sophia_call_executable
+  SophiaExecutable::evaluate(void*)
+  TcommandEngine::executeCommand(SophiaExecutable*, void*)
+  TelfEvalCmd::doCommand(TargList&)
+  Mel_Command_Dispatch(SphNode*)
+  node_exec
+  f_catch
+  fc_if
+  node_exec
+  fc_ifelse
+  node_exec
+  fc_if
+  node_exec
+  fc_if
+  node_exec
+  fc_for
+
+Result: /home/render/Desktop/rubiks/scenes/1__4107.ma
+Fatal Error. Attempting to save in /usr/tmp/render.20171110.1614.ma
+Writing crash report in /usr/tmp/render.20171110.1614.crash
+Segmentation fault (core dumped)
+// Maya exited with status 139
